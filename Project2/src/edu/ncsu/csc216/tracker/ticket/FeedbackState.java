@@ -2,7 +2,7 @@ package edu.ncsu.csc216.tracker.ticket;
 
 import edu.ncsu.csc216.tracker.command.Command;
 
-public class FeedbackState {
+public class FeedbackState implements TicketState{
 
 	private FeedbackState() {
 		

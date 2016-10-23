@@ -2,7 +2,7 @@ package edu.ncsu.csc216.tracker.ticket;
 
 import edu.ncsu.csc216.tracker.command.Command;
 
-public class ClosedState {
+public class ClosedState implements TicketState{
 
 	private ClosedState() {
 		
