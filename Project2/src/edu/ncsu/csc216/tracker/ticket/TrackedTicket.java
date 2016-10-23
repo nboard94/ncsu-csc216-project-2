@@ -18,7 +18,7 @@ public class TrackedTicket {
 	public static final String ASSIGNED_NAME = "Assigned";
 	public static final String WORKING_NAME = "Working";
 	public static final String FEEDBACK_NAME = "Feedback";
-	public static final String CLOSE_NAME = "Closed";
+	public static final String CLOSED_NAME = "Closed";
 	
 	private static int counter;
 	
@@ -47,6 +47,10 @@ public class TrackedTicket {
 	}
 	
 	public Flag getFlag() {
+		return null;
+	}
+	
+	public String getFlagString() {
 		return null;
 	}
 	

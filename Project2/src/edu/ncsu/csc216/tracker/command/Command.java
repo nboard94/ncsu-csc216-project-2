@@ -2,6 +2,16 @@ package edu.ncsu.csc216.tracker.command;
 
 public class Command {
 
+	//TODO HOW DO ENUMS WORK
+	public enum CommandValue {
+		POSSESSION, ACCEPTED, CLOSED, PROGRESS, FEEDBACK
+	}
+	
+	//TODO HOW DO ENUMS WORK
+	public enum Flag {
+		DUPLICATE, INAPPROPRIATE, RESOLVED
+	}
+
 	public static final String F_DUPLICATE = "Duplicate";
 	public static final String F_INAPPROPRIATE = "Inappropriate";
 	public static final String F_RESOLVED = "Resolved";
