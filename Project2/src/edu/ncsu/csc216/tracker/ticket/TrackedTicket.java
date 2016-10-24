@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import edu.ncsu.csc216.ticket.xml.Ticket;
 import edu.ncsu.csc216.tracker.command.Command;
-import edu.ncsu.csc216.tracker.command.Flag;
+import edu.ncsu.csc216.tracker.command.Command.Flag;
 
 public class TrackedTicket {
 
