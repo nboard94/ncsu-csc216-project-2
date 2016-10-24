@@ -30,7 +30,7 @@ public class TrackedTicketList {
 		return null;
 	}
 	
-	public List<TrackedTicket> getTicketBySubmitter(String s) {
+	public List<TrackedTicket> getTicketsBySubmitter(String s) {
 		return null;
 	}
 	
