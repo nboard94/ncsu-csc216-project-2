@@ -2,6 +2,7 @@ package edu.ncsu.csc216.tracker.ticket_tracker;
 
 import java.util.List;
 
+import edu.ncsu.csc216.ticket.xml.Ticket;
 import edu.ncsu.csc216.tracker.command.Command;
 import edu.ncsu.csc216.tracker.ticket.TrackedTicket;
 
@@ -17,8 +18,7 @@ public class TrackedTicketList {
 		return 0;
 	}
 	
-	//TODO List<Ticket> or List<TrackedTicket>?
-	public void addXMLTickets(List<TrackedTicket> l) {
+	public void addXMLTickets(List<Ticket> l) {
 		
 	}
 	
@@ -26,11 +26,11 @@ public class TrackedTicketList {
 		return null;
 	}
 	
-	public List<TrackedTicket> getTicketsByOwner() {
+	public List<TrackedTicket> getTicketsByOwner(String o) {
 		return null;
 	}
 	
-	public List<TrackedTicket> getTicketBySubmitter() {
+	public List<TrackedTicket> getTicketBySubmitter(String s) {
 		return null;
 	}
 	
