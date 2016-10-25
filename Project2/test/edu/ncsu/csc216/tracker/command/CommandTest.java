@@ -4,8 +4,16 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Class to test the Command class.
+ * @author NBoar
+ */
 public class CommandTest {
 
+	/**
+	 * Tests the commands's constructor, as well as the
+	 * getters and setters.
+	 */
 	@Test
 	public void testCommand() {
 		Command c1 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, "note", "ndboard");
