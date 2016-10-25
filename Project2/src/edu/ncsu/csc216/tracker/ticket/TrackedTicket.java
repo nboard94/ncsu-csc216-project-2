@@ -50,10 +50,6 @@ public class TrackedTicket {
 		return null;
 	}
 	
-	public String getFlagString() {
-		return null;
-	}
-	
 	private void setFlag(String s) {
 		
 	}
@@ -115,5 +111,85 @@ public class TrackedTicket {
 		 */
 		String getStateName();
 	
+	}
+
+	public String getFlagString() {
+		return null;
+	}
+}
+
+class NewState implements TicketState {
+
+	private NewState() {
+		
+	}
+	
+	public void updateState(Command c) {
+		
+	}
+	
+	public String getStateName() {
+		return null;
+	}
+}
+
+class AssignedState implements TicketState{
+
+	private AssignedState() {
+		
+	}
+	
+	public void updateState(Command c) {
+		
+	}
+	
+	public String getStateName() {
+		return null;
+	}
+}
+
+class WorkingState implements TicketState {
+
+	private WorkingState() {
+		
+	}
+	
+	public void updateState(Command c) {
+		
+	}
+	
+	public String getStateName() {
+		return null;
+	}
+}
+
+class FeedbackState implements TicketState{
+
+	private FeedbackState() {
+		
+	}
+	
+	public void updateState(Command c) {
+		
+	}
+	
+	public String getStateName() {
+		return null;
+	}
+}
+
+
+class ClosedState implements TicketState{
+
+	private ClosedState() {
+		
+	}
+	
+	public void updateState(Command c) {
+		
+	}
+	
+	public String getStateName() {
+		return null;
 	}
 }
