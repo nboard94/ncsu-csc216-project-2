@@ -1,43 +1,98 @@
 package edu.ncsu.csc216.tracker.command;
 
+/**
+ * Command objects encapsulates users actions and passes them to the GUI.
+ * @author NBoar
+ */
 public class Command {
 
+	/**
+	 * CommandValue enumeration to represent different command checks.
+	 * @author NBoar
+	 */
 	public static enum CommandValue {
 		POSSESSION, ACCEPTED, CLOSED, PROGRESS, FEEDBACK
 	}
 	
+	/**
+	 * Flag enumeration to represent the different types of flags a ticket can have.
+	 * @author NBoar
+	 */
 	public static enum Flag {
 		DUPLICATE, INAPPROPRIATE, RESOLVED
 	}
 
+	/** The string associated with the DUPLICATE flag*/
 	public static final String F_DUPLICATE = "Duplicate";
+	/** The string associated with the INAPPROPRIATE flag*/
 	public static final String F_INAPPROPRIATE = "Inappropriate";
+	/** The string associated with the RESOLVED flag*/
 	public static final String F_RESOLVED = "Resolved";
 	
+	/** The type of command.*/
+	private CommandValue command;
+	/** The owner of the ticket.*/
 	private String owner;
+	/** The type of flag associated with the ticket.*/
+	private Flag flag;
+	/** A note message associated with the ticket.*/
 	private String note;
+	/** The author of the note. */
 	private String noteAuthor;
 	
-	public Command(CommandValue cv, String s, Flag f, String s1, String s2) {
+	/**
+	 * The constructor for a Command object.  Sets the state of the Command.
+	 * @param newCommand The new Command to set command to.
+	 * @param newOwner The new Owner to set owner to.
+	 * @param newFlag The new Flag to set flag to.
+	 * @param newNote The new Note to set note to.
+	 * @param newNoteAuthor The new NoteAuthor to set noteAuthor to.
+	 */
+	public Command(CommandValue newCommand, String newOwner, Flag newFlag, String newNote, String newNoteAuthor) {
+		command = newCommand;
+		owner = newOwner;
+		flag = newFlag;
+		note = newNote;
+		noteAuthor = newNoteAuthor;
 		
 	}
 	
+	/**
+	 * Retrieves the value of the command.
+	 * @return command The type of the command.
+	 */
 	public CommandValue getCommand() {
-		return null;
+		return command;
 	}
 	
+	/**
+	 * Retrieves the owner of the command.
+	 * @return owner The owner of the command.
+	 */
 	public String getOwner() {
 		return owner;
 	}
 	
+	/**
+	 * Retrieves the flag associated with the command.
+	 * @return flag The flag associated with the command.
+	 */
 	public Flag getFlag() {
-		return null;
+		return flag;
 	}
 	
+	/**
+	 * Retrieves the note associated with the command.
+	 * @return note The note associated with the command.
+	 */
 	public String getNoteText() {
 		return note;
 	}
 	
+	/**
+	 * Retrieves the noteAuthor associated with the command.
+	 * @return noteAuthor The noteAuthor associated with the command.
+	 */
 	public String getNoteAuthor() {
 		return noteAuthor;
 	}
