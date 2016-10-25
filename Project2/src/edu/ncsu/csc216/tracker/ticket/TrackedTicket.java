@@ -85,33 +85,6 @@ public class TrackedTicket {
 	public String[][] getNotesArray() {
 		return null;
 	}
-	
-	/**
-	 * Interface for states in the Ticket State Pattern.  All 
-	 * concrete ticket states must implement the TicketState interface.
-	 * 
-	 * @author Dr. Sarah Heckman (sarah_heckman@ncsu.edu) 
-	 */
-	private interface TicketState {
-		
-		/**
-		 * Update the {@link TrackedTicket} based on the given {@link Command}.
-		 * An {@link UnsupportedOperationException} is throw if the {@link CommandValue}
-		 * is not a valid action for the given state.  
-		 * @param c {@link Command} describing the action that will update the {@link TrackedTicket}'s
-		 * state.
-		 * @throws UnsupportedOperationException if the {@link CommandValue} is not a valid action
-		 * for the given state.
-		 */
-		void updateState(Command c);
-		
-		/**
-		 * Returns the name of the current state as a String.
-		 * @return the name of the current state as a String.
-		 */
-		String getStateName();
-	
-	}
 
 	public String getFlagString() {
 		return null;
@@ -131,6 +104,7 @@ class NewState implements TicketState {
 	public String getStateName() {
 		return null;
 	}
+
 }
 
 class AssignedState implements TicketState{
@@ -163,7 +137,7 @@ class WorkingState implements TicketState {
 	}
 }
 
-class FeedbackState implements TicketState{
+class FeedbackState implements TicketState {
 
 	private FeedbackState() {
 		
@@ -178,18 +152,3 @@ class FeedbackState implements TicketState{
 	}
 }
 
-
-class ClosedState implements TicketState{
-
-	private ClosedState() {
-		
-	}
-	
-	public void updateState(Command c) {
-		
-	}
-	
-	public String getStateName() {
-		return null;
-	}
-}
