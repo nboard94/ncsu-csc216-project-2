@@ -17,35 +17,97 @@ public class TrackedTicketList {
 		
 	}
 	
-	public int addTrackedTicket(String s1, String s2, String s3) {
-		return 0;
+	/**
+	 * Adds a new TrackedTicket to the tickets list.
+	 * @param title The title of the new ticket to add.
+	 * @param submitter The submitter of the new ticket to add.
+	 * @param note The note of the new ticket to add.
+	 * @return The ticketId of the newly created/added ticket.
+	 */
+	public int addTrackedTicket(String title, String submitter, String note) {
+		TrackedTicket newTick = new TrackedTicket(title, submitter, note);
+		tickets.add(newTick);
+		
+		return newTick.getTicketId();
 	}
 	
-	public void addXMLTickets(List<Ticket> l) {
+	public void addXMLTickets(List<Ticket> list) {
 		
 	}
 	
+	/**
+	 * Retrieves all tickets.
+	 * @return tickets The ArrayList containing all tickets.
+	 */
 	public List<TrackedTicket> getTrackedTickets() {
-		return null;
+		return tickets;
 	}
 	
-	public List<TrackedTicket> getTicketsByOwner(String o) {
-		return null;
+	/**
+	 * Filters all the tickets by the specified owner.
+	 * @param owner The owner that you want to filter the tickets by.
+	 * @return ticketsByOwner An ArrayList containing tickets only associated with the specified owner.
+	 */
+	public List<TrackedTicket> getTicketsByOwner(String owner) {
+		ArrayList<TrackedTicket> ticketsByOwner = new ArrayList<TrackedTicket>();
+		
+		for (int i = 0; i < tickets.size(); i++) {
+			if (tickets.get(i).getOwner() == owner) {
+				ticketsByOwner.add(tickets.get(i));
+			}
+		}
+		
+		return ticketsByOwner;
 	}
 	
-	public List<TrackedTicket> getTicketsBySubmitter(String s) {
-		return null;
+	/**
+	 * Filters all the tickets by the specified submitter.
+	 * @param submitter The submitter that you want to filter the tickets by.
+	 * @return ticketsBySubmitter An ArrayList containing tickets only associated with the specified submitter.
+	 */
+	public List<TrackedTicket> getTicketsBySubmitter(String submitter) {
+		ArrayList<TrackedTicket> ticketsBySubmitter = new ArrayList<TrackedTicket>();
+		
+		for (int i = 0; i < tickets.size(); i++) {
+			if (tickets.get(i).getSubmitter() == submitter) {
+				ticketsBySubmitter.add(tickets.get(i));
+			}
+		}
+		
+		return ticketsBySubmitter;
 	}
 	
-	public TrackedTicket getTicketById(int i) {
-		return null;
+	/**
+	 * Finds and returns the single ticket with the unique ID passed.
+	 * @param id The ID of the ticket you want to find.
+	 * @return ticketById The ticket that has the specified ID.
+	 */
+	public TrackedTicket getTicketById(int id) {
+	TrackedTicket ticketById = null;
+		
+		for (int i = 0; i < tickets.size(); i++) {
+			if (tickets.get(i).getTicketId() == id) {
+				ticketById = tickets.get(i);
+			}
+		}
+		
+		return ticketById;
 	}
 	
 	public void executeCommand(int i, Command c) {
 		
 	}
 	
-	public void deleteTicketById(int i) {
-		
+	
+	/**
+	 * Finds and deletes the single ticket with the unique ID passed.
+	 * @param id The ID of the ticket you want to delete.
+	 */
+	public void deleteTicketById(int id) {
+		for (int i = 0; i < tickets.size(); i++) {
+			if (tickets.get(i).getTicketId() == id) {
+				tickets.remove(i);
+			}
+		}
 	}
 }
