@@ -6,14 +6,27 @@ import edu.ncsu.csc216.ticket.xml.Ticket;
 import edu.ncsu.csc216.tracker.command.Command;
 import edu.ncsu.csc216.tracker.command.Command.Flag;
 
+/**
+ * Class representing a ticket object.  Includes an inner interface 
+ * and inner classes representing the different states.
+ * @author NBoar
+ */
 public class TrackedTicket {
 
+	/** The numerical id of the ticket. */
 	private int ticketId;
+	/** The title of the ticket. */
 	private String title;
+	/** The submitter of the ticket. */
 	private String submitter;
+	/** The owner of the ticket. */
 	private String owner;
+	/** The static counter.  Increments upon TrackedTicket construction to set ticketId. */
 	private static int counter = 1;
+	/** The ArrayList containing the notes associated with the ticket. */
 	ArrayList<Note> notes = new ArrayList<Note>();
+	
+	Ticket ticket;
 	
 	//TODO are these right?
 	public static final String NEW_NAME = "New";
@@ -35,7 +48,7 @@ public class TrackedTicket {
 	
 	public TrackedTicket(Ticket t) {
 		this(t.getTitle(), t.getSubmitter(), "");
-	}
+	} 
 	
 	public static void incrementCounter() {
 		counter++;
@@ -74,7 +87,7 @@ public class TrackedTicket {
 	}
 	
 	public ArrayList<Note> getNotes() {
-		return null;
+		return notes;
 	}
 	
 	public void update(Command c) {

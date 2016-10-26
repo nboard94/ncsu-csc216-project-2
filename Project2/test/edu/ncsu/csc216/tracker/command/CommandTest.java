@@ -43,41 +43,55 @@ public class CommandTest {
 		
 		//test constructing invalid objects
 		try {
-			Command c6 = new Command(null, "ndboard", Command.Flag.DUPLICATE, "note", "ndboard");
+			c1 = new Command(null, "ndboard", Command.Flag.DUPLICATE, "note", "ndboard");
 			fail();
 		} catch (IllegalArgumentException e) {}
 		
 		try {
-			Command c7 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, "note", null);
+			c1 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, "note", null);
 			fail();
 		} catch (IllegalArgumentException e) {}
 		 
 		
 		try {
-			Command c8 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, "note", "");
+			c1 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, "note", "");
 			fail();
 		} catch (IllegalArgumentException e) {}
 		
 		try {
-			Command c9 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, null, "ndboard");
+			c1 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, null, "ndboard");
 			fail();
 		} catch (IllegalArgumentException e) {}
 		
 		try {
-			Command c9 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, "", "ndboard");
+			c1 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, "", "ndboard");
 			fail();
 		} catch (IllegalArgumentException e) {}
 		
 		try {
-			Command c10 = new Command(Command.CommandValue.POSSESSION, null, Command.Flag.DUPLICATE, "note", "ndboard");
+			c1 = new Command(Command.CommandValue.POSSESSION, null, Command.Flag.DUPLICATE, "note", "ndboard");
 		} catch (IllegalArgumentException e) {}
 		
 		try {
-			Command c11 = new Command(Command.CommandValue.POSSESSION, "", Command.Flag.DUPLICATE, "note", "ndboard");
+			c1 = new Command(Command.CommandValue.POSSESSION, "", Command.Flag.DUPLICATE, "note", "ndboard");
 		} catch (IllegalArgumentException e) {}
 		
 		try {
-			Command c12 = new Command(Command.CommandValue.CLOSED, "ndboard", null, "note", "ndboard");
+			c1 = new Command(Command.CommandValue.CLOSED, "ndboard", null, "note", "ndboard");
 		} catch (IllegalArgumentException e) {}
+	}
+	
+	@Test
+	public void testEnum() {
+		assertEquals("ACCEPTED", Command.CommandValue.valueOf("ACCEPTED").toString());
+		assertEquals("CLOSED", Command.CommandValue.valueOf("CLOSED").toString());
+		assertEquals("FEEDBACK", Command.CommandValue.valueOf("FEEDBACK").toString());
+		assertEquals("POSSESSION", Command.CommandValue.valueOf("POSSESSION").toString());
+		assertEquals("CLOSED", Command.CommandValue.valueOf("CLOSED").toString());
+		
+		assertEquals("DUPLICATE",Command.Flag.valueOf("DUPLICATE").toString());
+		assertEquals("INAPPROPRIATE",Command.Flag.valueOf("INAPPROPRIATE").toString());
+		assertEquals("RESOLVED",Command.Flag.valueOf("RESOLVED").toString());
+
 	}
 }
