@@ -1,5 +1,6 @@
 package edu.ncsu.csc216.tracker.ticket_tracker;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.ncsu.csc216.ticket.xml.Ticket;
@@ -8,6 +9,8 @@ import edu.ncsu.csc216.tracker.ticket.TrackedTicket;
 
 public class TrackedTicketList {
 
+	ArrayList<TrackedTicket> tickets = new ArrayList<TrackedTicket>();
+	
 	private static final int INITIAL_COUNTER_VALUE = 1;
 	
 	public TrackedTicketList() {

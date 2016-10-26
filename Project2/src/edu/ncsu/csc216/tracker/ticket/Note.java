@@ -11,14 +11,27 @@ public class Note {
 	/** The content of the note. */
 	private String noteText;
 	
+
+
 	/**
 	 * The Note constructor that sets the fields of a Note object.
 	 * @param newAuthor The author of the new note.
 	 * @param newText The content of the new note.
+	 * @throws IllegalArgumentException if newAuthor or newText is null or empty.
 	 */
-	public Note(String newAuthor, String newText) {
-		this.setNoteAuthor(newAuthor);
-		this.setNoteText(newText);
+	public Note(String newAuthor, String newText) throws IllegalArgumentException {
+		
+		if (newAuthor == null || newAuthor == "") {
+			throw new IllegalArgumentException();
+		} else {
+			this.setNoteAuthor(newAuthor);
+		}
+		
+		if (newText == null || newText == "") {
+			throw new IllegalArgumentException();
+		} else {
+			this.setNoteText(newText);
+		}
 	}
 	
 	/**

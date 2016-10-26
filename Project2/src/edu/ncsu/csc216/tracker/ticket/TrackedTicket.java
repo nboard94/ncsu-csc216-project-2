@@ -12,6 +12,8 @@ public class TrackedTicket {
 	private String title;
 	private String submitter;
 	private String owner;
+	private static int counter = 1;
+	ArrayList<Note> notes = new ArrayList<Note>();
 	
 	//TODO are these right?
 	public static final String NEW_NAME = "New";
@@ -20,22 +22,27 @@ public class TrackedTicket {
 	public static final String FEEDBACK_NAME = "Feedback";
 	public static final String CLOSED_NAME = "Closed";
 	
-	private static int counter;
 	
-	public TrackedTicket(String s1, String s2, String s3) {
+	
+	public TrackedTicket(String newTitle, String newSubmitter, String newNote) {
+		ticketId = counter;
+		title = newTitle;
+
+		notes.add(new Note(newSubmitter, newNote));
 		
+		incrementCounter();
 	}
 	
 	public TrackedTicket(Ticket t) {
-		
+		this(t.getTitle(), t.getSubmitter(), "");
 	}
 	
 	public static void incrementCounter() {
-		
+		counter++;
 	}
 	
 	public int getTicketId() {
-		return 0;
+		return ticketId;
 	}
 	
 	public String getStateName() {
@@ -51,19 +58,19 @@ public class TrackedTicket {
 	}
 	
 	private void setFlag(String s) {
-		
+		this.setFlag(s);
 	}
 	
 	public String getOwner() {
-		return null;
+		return owner;
 	}
 	
 	public String getTitle() {
-		return null;
+		return title;
 	}
 	
 	public String getSubmitter() {
-		return null;
+		return submitter;
 	}
 	
 	public ArrayList<Note> getNotes() {
@@ -78,12 +85,21 @@ public class TrackedTicket {
 		return null;
 	}
 	
-	public static void setCounter(int i) {
-		
+	public static void setCounter(int newCount) {
+		counter = newCount;
 	}
 	
 	public String[][] getNotesArray() {
-		return null;
+		
+		String[][] noteArray = new String[notes.size()][2];
+		
+		for (int i = 0; i < notes.size(); i++) {
+			noteArray[i][0] = notes.get(i).getNoteArray()[0];
+			noteArray[i][1] = notes.get(i).getNoteArray()[1];
+
+		}
+		
+		return noteArray;
 	}
 
 	public String getFlagString() {
@@ -128,7 +144,7 @@ public class TrackedTicket {
 		}
 		
 		public String getStateName() {
-			return null;
+			return NEW_NAME;
 		}
 	
 	}
@@ -144,7 +160,7 @@ public class TrackedTicket {
 		}
 		
 		public String getStateName() {
-			return null;
+			return ASSIGNED_NAME;
 		}
 	}
 	
@@ -159,7 +175,7 @@ public class TrackedTicket {
 		}
 		
 		public String getStateName() {
-			return null;
+			return WORKING_NAME;
 		}
 	}
 	
@@ -174,7 +190,22 @@ public class TrackedTicket {
 		}
 		
 		public String getStateName() {
-			return null;
+			return FEEDBACK_NAME;
+		}
+	}
+	
+	class ClosedState implements TicketState {
+		
+		private ClosedState() {
+
+		}
+		
+		public void updateState(Command c) {
+			
+		}
+		
+		public String getStateName() {
+			return CLOSED_NAME;
 		}
 	}
 }

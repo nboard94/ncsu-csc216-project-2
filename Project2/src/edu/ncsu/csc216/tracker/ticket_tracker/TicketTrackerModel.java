@@ -4,13 +4,16 @@ import edu.ncsu.csc216.tracker.command.Command;
 import edu.ncsu.csc216.tracker.ticket.TrackedTicket;
 
 public class TicketTrackerModel {
+	
+	public static TicketTrackerModel tickTrack = new TicketTrackerModel();
+	private TrackedTicketList trackedTicketList = new TrackedTicketList();
 
 	private TicketTrackerModel() {
 		
 	}
 	
 	public static TicketTrackerModel getInstance() {
-		return null;
+		return tickTrack;
 	}
 	
 	public void saveTicketsToFile(String s) {
@@ -29,7 +32,7 @@ public class TicketTrackerModel {
 		return null;
 	}
 	
-	public Object[][] getTicketListByOwnerAsArray(String o) {
+	public Object[][] getTicketListByOwnerAsArray(String owner) {
 		return null;
 	}
 	

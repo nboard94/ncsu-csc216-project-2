@@ -47,14 +47,35 @@ public class Command {
 	 * @param newFlag The new Flag to set flag to.
 	 * @param newNote The new Note to set note to.
 	 * @param newNoteAuthor The new NoteAuthor to set noteAuthor to.
+	 * @throws IllegalArgumentException If newCommand is null.
+	 * @throws IllegalArgumentException If newNoteAuthor or newNote is null or empty.
+	 * @throws IllegalArgumentException If the newCommand is POSSESSION and the newOwner is null or empty.
+	 * @throws IllegalArgumentException If the newCommand is CLOSED and newFlag is null.
 	 */
-	public Command(CommandValue newCommand, String newOwner, Flag newFlag, String newNote, String newNoteAuthor) {
-		command = newCommand;
-		owner = newOwner;
-		flag = newFlag;
-		note = newNote;
-		noteAuthor = newNoteAuthor;
+	public Command(CommandValue newCommand, String newOwner, Flag newFlag, String newNote, String newNoteAuthor) throws IllegalArgumentException {
 		
+		if (newCommand == null) {
+			throw new IllegalArgumentException();
+		}
+		else if (noteAuthor == null || noteAuthor == "") {
+			throw new IllegalArgumentException();
+		}
+		else if (note == null || note == "") {
+			throw new IllegalArgumentException();
+		}
+		else if (newCommand == CommandValue.POSSESSION && (newOwner == null || newOwner == "")) {
+			throw new IllegalArgumentException();
+		}
+		else if (newCommand == CommandValue.CLOSED &&  newFlag == null) {
+			throw new IllegalArgumentException();
+		}
+		else {
+			command = newCommand;
+			owner = newOwner;
+			flag = newFlag;
+			note = newNote;
+			noteAuthor = newNoteAuthor;
+		}
 	}
 	
 	/**
