@@ -57,10 +57,10 @@ public class Command {
 		if (newCommand == null) {
 			throw new IllegalArgumentException();
 		}
-		else if (noteAuthor == null || noteAuthor == "") {
+		else if (newNoteAuthor == null || newNoteAuthor == "") {
 			throw new IllegalArgumentException();
 		}
-		else if (note == null || note == "") {
+		else if (newNote == null || newNote == "") {
 			throw new IllegalArgumentException();
 		}
 		else if (newCommand == CommandValue.POSSESSION && (newOwner == null || newOwner == "")) {

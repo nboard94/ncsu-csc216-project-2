@@ -58,7 +58,7 @@ public class TrackedTicket {
 	}
 	
 	private void setFlag(String s) {
-		this.setFlag(s);
+		
 	}
 	
 	public String getOwner() {
