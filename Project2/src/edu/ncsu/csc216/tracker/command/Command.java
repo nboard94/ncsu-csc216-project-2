@@ -30,11 +30,11 @@ public class Command {
 	public static final String F_RESOLVED = "Resolved";
 	
 	/** The type of command.*/
-	private CommandValue command;
+	public CommandValue command;
 	/** The owner of the ticket.*/
 	private String owner;
 	/** The type of flag associated with the ticket.*/
-	private Flag flag;
+	public Flag flag;
 	/** A note message associated with the ticket.*/
 	private String note;
 	/** The author of the note. */

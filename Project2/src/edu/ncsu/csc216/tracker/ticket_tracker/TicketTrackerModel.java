@@ -6,7 +6,7 @@ import edu.ncsu.csc216.tracker.ticket.TrackedTicket;
 public class TicketTrackerModel {
 	
 	public static TicketTrackerModel tickTrack = new TicketTrackerModel();
-	private TrackedTicketList trackedTicketList = new TrackedTicketList();
+	public static TrackedTicketList trackedTicketList = new TrackedTicketList();
 
 	private TicketTrackerModel() {
 		

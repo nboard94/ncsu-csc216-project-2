@@ -1,9 +1,11 @@
 package edu.ncsu.csc216.tracker.ticket;
 
+import java.lang.Thread.State;
 import java.util.ArrayList;
 
 import edu.ncsu.csc216.ticket.xml.Ticket;
 import edu.ncsu.csc216.tracker.command.Command;
+import edu.ncsu.csc216.tracker.command.Command.CommandValue;
 import edu.ncsu.csc216.tracker.command.Command.Flag;
 
 /**
@@ -26,7 +28,15 @@ public class TrackedTicket {
 	/** The ArrayList containing the notes associated with the ticket. */
 	ArrayList<Note> notes = new ArrayList<Note>();
 	
-	Ticket ticket;
+	public Flag flag;
+	public CommandValue command;
+	
+	public TicketState state;
+	public NewState newState;
+	public AssignedState assignedState;
+	public WorkingState workingState;
+	public FeedbackState feedbackState;
+	public ClosedState closedState;
 	
 	//TODO are these right?
 	public static final String NEW_NAME = "New";
@@ -41,6 +51,7 @@ public class TrackedTicket {
 		ticketId = counter;
 		title = newTitle;
 
+		this.setState(NEW_NAME);
 		notes.add(new Note(newSubmitter, newNote));
 		
 		incrementCounter();
@@ -50,42 +61,107 @@ public class TrackedTicket {
 		this(t.getTitle(), t.getSubmitter(), "");
 	} 
 	
+	/**
+	 * Increments the static integer counter by 1 when called.
+	 */
 	public static void incrementCounter() {
 		counter++;
 	}
 	
+	/**
+	 * Retrieves the ticket's ticketId.
+	 * @return ticketId The numerical ID for the ticket.
+	 */
 	public int getTicketId() {
 		return ticketId;
 	}
 	
+	/**
+	 * Retrieves the name of the state the ticket is currently in.
+	 * @return The name of the state, otherwise null.
+	 */
 	public String getStateName() {
-		return null;
+		if (state.equals(newState)) {
+			return NEW_NAME;
+		}
+		else if (state.equals(assignedState)) {
+			return ASSIGNED_NAME;
+		}
+		else if (state.equals(workingState)) {
+			return WORKING_NAME;
+		}
+		else if (state.equals(feedbackState)) {
+			return FEEDBACK_NAME;
+		}
+		else if (state.equals(closedState)) {
+			return CLOSED_NAME;
+		}
+		else {
+			return null;
+		}
+	}
+
+	private void setState(String newStateName) {
+		if (newStateName.equals(newState.getStateName())) {
+			state = newState;
+		}
+		else if (newStateName.equals(assignedState.getStateName())) {
+			state = assignedState;
+		}
+		else if (newStateName.equals(workingState.getStateName())) {
+			state = workingState;
+		}
+		else if (newStateName.equals(feedbackState.getStateName())) {
+			state = feedbackState;
+		}
+		else if (newStateName.equals(closedState.getStateName())) {
+			state = closedState;
+		}
+		else {
+			state = null;
+		}
 	}
 	
-	private void setState(String s) {
-		
-	}
-	
+	/**
+	 * Retrieves the flag associated with the ticket.
+	 * @return flag The flag associated with the ticket.
+	 */
 	public Flag getFlag() {
-		return null;
+		return flag;
 	}
 	
 	private void setFlag(String s) {
 		
 	}
 	
+	/**
+	 * Retrieves the ticket's owner.
+	 * @return owner The owner of the ticket.
+	 */
 	public String getOwner() {
 		return owner;
 	}
 	
+	/**
+	 * Retrieves the ticket's title.
+	 * @return title The title of the ticket.
+	 */
 	public String getTitle() {
 		return title;
 	}
 	
+	/**
+	 * Retrieves the ticket's submitter.
+	 * @return submitter The submitter of the ticket.
+	 */
 	public String getSubmitter() {
 		return submitter;
 	}
 	
+	/**
+	 * Retrieves all note objects associated with the ticket.
+	 * @return notes The ArrayList containing all associated Note objects.
+	 */
 	public ArrayList<Note> getNotes() {
 		return notes;
 	}
@@ -98,6 +174,10 @@ public class TrackedTicket {
 		return null;
 	}
 	
+	/**
+	 * Sets the counter integer to a new integer.
+	 * @param newCount The integer you want to set the counter to.
+	 */
 	public static void setCounter(int newCount) {
 		counter = newCount;
 	}
