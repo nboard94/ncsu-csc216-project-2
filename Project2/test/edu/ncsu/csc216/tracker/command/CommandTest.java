@@ -51,6 +51,7 @@ public class CommandTest {
 			Command c7 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, "note", null);
 			fail();
 		} catch (IllegalArgumentException e) {}
+		 
 		
 		try {
 			Command c8 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, "note", "");
