@@ -57,7 +57,7 @@ public class TrackedTicket {
 	/** String representation of ClosedState. */
 	public static final String CLOSED_NAME = "closed";
 	
-
+ 
 	/**
 	 * The default constructor for a TrackedTicket object.
 	 * Takes in three strings for the title, submitter, and note.
