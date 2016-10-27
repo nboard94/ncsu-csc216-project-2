@@ -329,7 +329,12 @@ public class TrackedTicket {
 		 * for the given state.
 		 */
 		public void updateState(Command c) {
-			
+			if (c.getCommand() == CommandValue.POSSESSION) {
+				state = assignedState;
+			}
+			else {
+				throw new UnsupportedOperationException();
+			}
 		}
 		
 		/**
@@ -367,7 +372,15 @@ public class TrackedTicket {
 		 * for the given state.
 		 */
 		public void updateState(Command c) {
-			
+			if (c.command == CommandValue.ACCEPTED) {
+				state = workingState;
+			}
+			else if (c.command == CommandValue.CLOSED) {
+				state = closedState;
+			}
+			else {
+				throw new UnsupportedOperationException();
+			}
 		}
 		
 		/**
@@ -404,7 +417,21 @@ public class TrackedTicket {
 		 * for the given state.
 		 */
 		public void updateState(Command c) {
-			
+			if (c.command == CommandValue.PROGRESS) {
+				state = workingState;
+			}
+			else if (c.command == CommandValue.FEEDBACK) {
+				state = feedbackState;
+			}
+			else if (c.command == CommandValue.CLOSED) {
+				state = closedState;
+			}
+			else if (c.command == CommandValue.POSSESSION) {
+				state = assignedState;
+			}
+			else {
+				throw new UnsupportedOperationException();
+			}
 		}
 		
 		/**
@@ -428,7 +455,7 @@ public class TrackedTicket {
 		 * Constructor for the FeedbackState object.
 		 */
 		private FeedbackState() {
-			
+		
 		}
 		
 		/**
@@ -441,7 +468,12 @@ public class TrackedTicket {
 		 * for the given state.
 		 */
 		public void updateState(Command c) {
-			
+			if (c.command == CommandValue.FEEDBACK) {
+				state = workingState;
+			}
+			else {
+				throw new UnsupportedOperationException();
+			}
 		}
 		
 		/**
@@ -478,7 +510,12 @@ public class TrackedTicket {
 		 * for the given state.
 		 */
 		public void updateState(Command c) {
-			
+			if (c.command == CommandValue.ACCEPTED) {
+				state = workingState;
+			}
+			else if (c.command == CommandValue.POSSESSION) {
+				state = assignedState;
+			}
 		}
 		
 		/**
