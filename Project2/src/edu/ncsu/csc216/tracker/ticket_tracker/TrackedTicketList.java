@@ -7,14 +7,25 @@ import edu.ncsu.csc216.ticket.xml.Ticket;
 import edu.ncsu.csc216.tracker.command.Command;
 import edu.ncsu.csc216.tracker.ticket.TrackedTicket;
 
+/**
+ * Maintains a list of TrackedTickets and includes methods for creating,
+ * loading, saving, et cetera.
+ * @author NBoar
+ */
 public class TrackedTicketList {
 
+	/** The counter value to use when dealing with any new list. */
+	private static final int INITIAL_COUNTER_VALUE = 1;
+	/** The ArrayList containing the TrackedTickets in a TrackedTicketList. */
 	ArrayList<TrackedTicket> tickets = new ArrayList<TrackedTicket>();
 	
-	private static final int INITIAL_COUNTER_VALUE = 1;
 	
+	/**
+	 * The constructor for a TrackedTicketList.
+	 * Sets the counter back to 1.
+	 */
 	public TrackedTicketList() {
-		
+		TrackedTicket.setCounter(INITIAL_COUNTER_VALUE);
 	}
 	
 	/**
@@ -31,6 +42,7 @@ public class TrackedTicketList {
 		return newTick.getTicketId();
 	}
 	
+	//TODO
 	public void addXMLTickets(List<Ticket> list) {
 		
 	}
@@ -94,10 +106,10 @@ public class TrackedTicketList {
 		return ticketById;
 	}
 	
+	//TODO
 	public void executeCommand(int i, Command c) {
 		
 	}
-	
 	
 	/**
 	 * Finds and deletes the single ticket with the unique ID passed.

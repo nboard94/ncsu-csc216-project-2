@@ -3,56 +3,138 @@ package edu.ncsu.csc216.tracker.ticket_tracker;
 import edu.ncsu.csc216.tracker.command.Command;
 import edu.ncsu.csc216.tracker.ticket.TrackedTicket;
 
+/**
+ * Maintains the trackedTicketList and deals with file IO.
+ * @author NBoar
+ */
 public class TicketTrackerModel {
 	
+	/** The only instance of the TicketTrackerModel, following the Singleton pattern. */
 	public static TicketTrackerModel tickTrack = new TicketTrackerModel();
+	/** The current TrackedTicketList.*/
 	public static TrackedTicketList trackedTicketList = new TrackedTicketList();
 
+	/**
+	 * Private constructor for the TickeTrackerModel to ensure the Singleton pattern.
+	 */
 	private TicketTrackerModel() {
 		
 	}
 	
+	/**
+	 * Retrieves the instance of the TicketTrackerModel.
+	 * @return tickTrack The only instance of the TicketTrackerModel.
+	 */
 	public static TicketTrackerModel getInstance() {
 		return tickTrack;
 	}
 	
+	//TODO
 	public void saveTicketsToFile(String s) {
 		
 	}
 	
+	//TODO
 	public void loadTicketsFromFile(String s) {
 		
 	}
 	
+	//TODO
 	public void createNewTicketList() {
-		
+		trackedTicketList = new TrackedTicketList();
 	}
 	
+	/**
+	 * Returns an array containing TrackedTickets.
+	 * @param submitter The submitter of the tickets you want to view.
+	 * @return ticketList A 2D array with the TrackedTicket's Id, state, and title.
+	 */
 	public Object[][] getTicketListAsArray() {
-		return null;
+		Object[][] ticketList = new Object[trackedTicketList.tickets.size()][3];
+		
+		for (int i = 0; i < trackedTicketList.tickets.size(); i++) {
+			ticketList[i][0] = trackedTicketList.getTrackedTickets().get(i).getTicketId();
+			ticketList[i][1] = trackedTicketList.getTrackedTickets().get(i).getStateName();
+			ticketList[i][2] = trackedTicketList.getTrackedTickets().get(i).getTitle();
+		}
+		
+		return ticketList;
 	}
 	
+	/**
+	 * Returns an array containing TrackedTickets with a specified owner.
+	 * @param submitter The submitter of the tickets you want to view.
+	 * @return ticketList A 2D array with the TrackedTicket's Id, state, and title.
+	 */
 	public Object[][] getTicketListByOwnerAsArray(String owner) {
-		return null;
+		Object[][] ticketList = new Object[trackedTicketList.tickets.size()][3];
+		
+		for (int i = 0; i < trackedTicketList.tickets.size(); i++) {
+			if (trackedTicketList.tickets.get(i).getOwner() == null) {
+				throw new IllegalArgumentException();
+			}
+			
+			ticketList[i][0] = trackedTicketList.getTicketsByOwner(owner).get(i).getTicketId();
+			ticketList[i][1] = trackedTicketList.getTicketsByOwner(owner).get(i).getStateName();
+			ticketList[i][2] = trackedTicketList.getTicketsByOwner(owner).get(i).getTitle();
+		}
+		
+		return ticketList;
 	}
 	
-	public Object[][] getTicketListBySubmitterAsArray(String s) {
-		return null;
+	/**
+	 * Returns an array containing TrackedTickets with a specified submitter.
+	 * @param submitter The submitter of the tickets you want to view.
+	 * @return ticketList A 2D array with the TrackedTicket's Id, state, and title.
+	 */
+	public Object[][] getTicketListBySubmitterAsArray(String submitter) {
+		Object[][] ticketList = new Object[trackedTicketList.tickets.size()][3];
+		
+		for (int i = 0; i < trackedTicketList.tickets.size(); i++) {
+			if (trackedTicketList.tickets.get(i).getSubmitter() == null) {
+				throw new IllegalArgumentException();
+			}
+			
+			ticketList[i][0] = trackedTicketList.getTicketsBySubmitter(submitter).get(i).getTicketId();
+			ticketList[i][1] = trackedTicketList.getTicketsBySubmitter(submitter).get(i).getStateName();
+			ticketList[i][2] = trackedTicketList.getTicketsBySubmitter(submitter).get(i).getTitle();
+		}
+		
+		return ticketList;
 	}
 	
-	public TrackedTicket getTicketById(int i) {
-		return null;
+	/**
+	 * Finds and returns the single ticket with the unique ID passed.
+	 * Delegates to TrackedTicketList class.
+	 * @param id The ID of the ticket you want to find.
+	 * @return trackedTicketList.ticketById The ticket that has the specified ID.
+	 */
+	public TrackedTicket getTicketById(int id) {
+		return trackedTicketList.getTicketById(id);
 	}
 	
+	//TODO
 	public void executeCommand(int i, Command c) {
-		
+		trackedTicketList.executeCommand(i, c);
 	}
 	
-	public void deleteTicketById(int i) {
-		
+	/**
+	 * Finds and deletes the single ticket with the unique ID passed.
+	 * Delegates to TrackedTicketList class.
+	 * @param id The ID of the ticket you want to delete.
+	 */
+	public void deleteTicketById(int id) {
+		trackedTicketList.deleteTicketById(id);
 	}
 	
-	public void addTicketToList(String s1, String s2, String s3) {
-		
+	/**
+	 * Adds a new TrackedTicket to the trackedTicketList.
+	 * Delegates to TrackedTicketList class.
+	 * @param title The title of the new ticket to add.
+	 * @param submitter The submitter of the new ticket to add.
+	 * @param note The note of the new text to add.
+	 */
+	public void addTicketToList(String title, String submitter, String note) {
+		trackedTicketList.addTrackedTicket(title, submitter, note);
 	}
 }

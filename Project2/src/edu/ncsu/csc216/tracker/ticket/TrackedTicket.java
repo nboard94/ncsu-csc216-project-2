@@ -1,8 +1,6 @@
 package edu.ncsu.csc216.tracker.ticket;
 
-import java.lang.Thread.State;
 import java.util.ArrayList;
-
 import edu.ncsu.csc216.ticket.xml.Ticket;
 import edu.ncsu.csc216.tracker.command.Command;
 import edu.ncsu.csc216.tracker.command.Command.CommandValue;
@@ -28,9 +26,11 @@ public class TrackedTicket {
 	/** The ArrayList containing the notes associated with the ticket. */
 	ArrayList<Note> notes = new ArrayList<Note>();
 	
+	//TODO
 	public Flag flag;
 	public CommandValue command;
 	
+	//TODO
 	public TicketState state;
 	public NewState newState;
 	public AssignedState assignedState;
@@ -46,7 +46,7 @@ public class TrackedTicket {
 	public static final String CLOSED_NAME = "Closed";
 	
 	
-	
+	//TODO
 	public TrackedTicket(String newTitle, String newSubmitter, String newNote) {
 		ticketId = counter;
 		title = newTitle;
@@ -57,6 +57,7 @@ public class TrackedTicket {
 		incrementCounter();
 	}
 	
+	//TODO
 	public TrackedTicket(Ticket t) {
 		this(t.getTitle(), t.getSubmitter(), "");
 	} 
@@ -130,6 +131,7 @@ public class TrackedTicket {
 		return flag;
 	}
 	
+	//TODO
 	private void setFlag(String s) {
 		
 	}
@@ -166,10 +168,12 @@ public class TrackedTicket {
 		return notes;
 	}
 	
+	//TODO
 	public void update(Command c) {
 		
 	}
 	
+	//TODO
 	public Ticket getXMLTicket() {
 		return null;
 	}
@@ -182,6 +186,7 @@ public class TrackedTicket {
 		counter = newCount;
 	}
 	
+	//TODO
 	public String[][] getNotesArray() {
 		
 		String[][] noteArray = new String[notes.size()][2];
@@ -195,6 +200,7 @@ public class TrackedTicket {
 		return noteArray;
 	}
 
+	//TODO
 	public String getFlagString() {
 		return null;
 	}
@@ -226,6 +232,7 @@ public class TrackedTicket {
 	
 	}
 	
+	//TODO
 	class NewState implements TicketState {
 	
 		private NewState() {
@@ -242,6 +249,7 @@ public class TrackedTicket {
 	
 	}
 	
+	//TODO
 	class AssignedState implements TicketState{
 	
 		private AssignedState() {
@@ -257,6 +265,7 @@ public class TrackedTicket {
 		}
 	}
 	
+	//TODO
 	class WorkingState implements TicketState {
 	
 		private WorkingState() {
@@ -272,6 +281,7 @@ public class TrackedTicket {
 		}
 	}
 	
+	//TODO
 	class FeedbackState implements TicketState {
 	
 		private FeedbackState() {
@@ -287,6 +297,7 @@ public class TrackedTicket {
 		}
 	}
 	
+	//TODO
 	class ClosedState implements TicketState {
 		
 		private ClosedState() {
