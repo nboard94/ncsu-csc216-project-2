@@ -42,7 +42,10 @@ public class TicketTrackerModel {
 		
 	}
 	
-	//TODO
+	/**
+	 * @param inputFile The file to load the tickets from.
+	 * @throws IllegalArgumentException If TicketIOException is caught.
+	 */
 	public void loadTicketsFromFile(String inputFile) throws IllegalArgumentException {
 		try {
 			TicketReader tickRead = new TicketReader(inputFile);
@@ -52,7 +55,10 @@ public class TicketTrackerModel {
 		}		
 	}
 	
-	//TODO
+	/**
+	 * Creates a new TrackedTicketList and sets
+	 * trackedTicketList equal to it.
+	 */
 	public void createNewTicketList() {
 		trackedTicketList = new TrackedTicketList();
 	}

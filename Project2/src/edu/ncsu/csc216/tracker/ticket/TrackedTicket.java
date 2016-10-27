@@ -268,82 +268,187 @@ public class TrackedTicket {
 	
 	}
 	
-	//TODO
+	/**
+	 * Class for implementing the behavior
+	 * of the NewState.  Implements the methods in
+	 * the TicketState interface.
+	 * @author NBoar
+	 */
 	class NewState implements TicketState {
 	
+		/**
+		 * Constructor for the NewState object.
+		 */
 		private NewState() {
 			
 		}
 		
+		/**
+		 * Update the {@link TrackedTicket} based on the given {@link Command}.
+		 * An {@link UnsupportedOperationException} is throw if the {@link CommandValue}
+		 * is not a valid action for the given state.  
+		 * @param c {@link Command} describing the action that will update the {@link TrackedTicket}'s
+		 * state.
+		 * @throws UnsupportedOperationException if the {@link CommandValue} is not a valid action
+		 * for the given state.
+		 */
 		public void updateState(Command c) {
 			
 		}
 		
+		/**
+		 * Returns the name of the current state as a String.
+		 * @return the name of the current state as a String.
+		 */
 		public String getStateName() {
 			return NEW_NAME;
 		}
 	
 	}
 	
-	//TODO
+	/**
+	 * Class for implementing the behavior
+	 * of the AssignedState.  Implements the methods in
+	 * the TicketState interface.
+	 * @author NBoar
+	 */
 	class AssignedState implements TicketState{
 	
+		/**
+		 * Constructor for the AssignedState object.
+		 */
 		private AssignedState() {
 			
 		}
 		
+		/**
+		 * Update the {@link TrackedTicket} based on the given {@link Command}.
+		 * An {@link UnsupportedOperationException} is throw if the {@link CommandValue}
+		 * is not a valid action for the given state.  
+		 * @param c {@link Command} describing the action that will update the {@link TrackedTicket}'s
+		 * state.
+		 * @throws UnsupportedOperationException if the {@link CommandValue} is not a valid action
+		 * for the given state.
+		 */
 		public void updateState(Command c) {
 			
 		}
 		
+		/**
+		 * Returns the name of the current state as a String.
+		 * @return the name of the current state as a String.
+		 */
 		public String getStateName() {
 			return ASSIGNED_NAME;
 		}
 	}
 	
-	//TODO
+	/**
+	 * Class for implementing the behavior
+	 * of the Workingtate.  Implements the methods in
+	 * the TicketState interface.
+	 * @author NBoar
+	 */
 	class WorkingState implements TicketState {
 	
+		/**
+		 * Constructor for the WorkingState object.
+		 */
 		private WorkingState() {
 			
 		}
 		
+		/**
+		 * Update the {@link TrackedTicket} based on the given {@link Command}.
+		 * An {@link UnsupportedOperationException} is throw if the {@link CommandValue}
+		 * is not a valid action for the given state.  
+		 * @param c {@link Command} describing the action that will update the {@link TrackedTicket}'s
+		 * state.
+		 * @throws UnsupportedOperationException if the {@link CommandValue} is not a valid action
+		 * for the given state.
+		 */
 		public void updateState(Command c) {
 			
 		}
 		
+		/**
+		 * Returns the name of the current state as a String.
+		 * @return the name of the current state as a String.
+		 */
 		public String getStateName() {
 			return WORKING_NAME;
 		}
 	}
 	
-	//TODO
+	/**
+	 * Class for implementing the behavior
+	 * of the FeedbackState.  Implements the methods in
+	 * the TicketState interface.
+	 * @author NBoar
+	 */
 	class FeedbackState implements TicketState {
 	
+		/**
+		 * Constructor for the FeedbackState object.
+		 */
 		private FeedbackState() {
 			
 		}
 		
+		/**
+		 * Update the {@link TrackedTicket} based on the given {@link Command}.
+		 * An {@link UnsupportedOperationException} is throw if the {@link CommandValue}
+		 * is not a valid action for the given state.  
+		 * @param c {@link Command} describing the action that will update the {@link TrackedTicket}'s
+		 * state.
+		 * @throws UnsupportedOperationException if the {@link CommandValue} is not a valid action
+		 * for the given state.
+		 */
 		public void updateState(Command c) {
 			
 		}
 		
+		/**
+		 * Returns the name of the current state as a String.
+		 * @return the name of the current state as a String.
+		 */
 		public String getStateName() {
 			return FEEDBACK_NAME;
 		}
 	}
 	
-	//TODO
+	/**
+	 * Class for implementing the behavior
+	 * of the ClosedState.  Implements the methods in
+	 * the TicketState interface.
+	 * @author NBoar
+	 */
 	class ClosedState implements TicketState {
 		
+		/**
+		 * Constructor for the ClosedState object.
+		 */
 		private ClosedState() {
 
 		}
 		
+		/**
+		 * Update the {@link TrackedTicket} based on the given {@link Command}.
+		 * An {@link UnsupportedOperationException} is throw if the {@link CommandValue}
+		 * is not a valid action for the given state.  
+		 * @param c {@link Command} describing the action that will update the {@link TrackedTicket}'s
+		 * state.
+		 * @throws UnsupportedOperationException if the {@link CommandValue} is not a valid action
+		 * for the given state.
+		 */
 		public void updateState(Command c) {
 			
 		}
 		
+		/**
+		 * Returns the name of the current state as a String.
+		 * @return the name of the current state as a String.
+		 */
 		public String getStateName() {
 			return CLOSED_NAME;
 		}
