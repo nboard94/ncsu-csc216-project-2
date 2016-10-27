@@ -2,6 +2,7 @@ package edu.ncsu.csc216.tracker.ticket;
 
 import java.util.ArrayList;
 
+import edu.ncsu.csc216.ticket.xml.NoteItem;
 import edu.ncsu.csc216.ticket.xml.NoteList;
 import edu.ncsu.csc216.ticket.xml.Ticket;
 import edu.ncsu.csc216.tracker.command.Command;
@@ -45,20 +46,26 @@ public class TrackedTicket {
 	/** Represents the TrackedTicket's ClosedState. */
 	public ClosedState closedState;
 	
-	//TODO are these right?
 	/** String representation of NewState. */
-	public static final String NEW_NAME = "New";
+	public static final String NEW_NAME = "new";
 	/** String representation of AssignedState. */
-	public static final String ASSIGNED_NAME = "Assigned";
+	public static final String ASSIGNED_NAME = "assigned";
 	/** String representation of WorkingState. */
-	public static final String WORKING_NAME = "Working";
+	public static final String WORKING_NAME = "working";
 	/** String representation of FeedbackState. */
-	public static final String FEEDBACK_NAME = "Feedback";
+	public static final String FEEDBACK_NAME = "feedback";
 	/** String representation of ClosedState. */
-	public static final String CLOSED_NAME = "Closed";
+	public static final String CLOSED_NAME = "closed";
 	
-	
-	//TODO
+
+	/**
+	 * The default constructor for a TrackedTicket object.
+	 * Takes in three strings for the title, submitter, and note.
+	 * The id is set to the counter, which is incremented at the end of each construction.
+	 * @param newTitle The title of the new TrackedTicket.
+	 * @param newSubmitter The submitter of the new TrackedTicket.
+	 * @param newNote The initial note of the new TrackedTicket.
+	 */
 	public TrackedTicket(String newTitle, String newSubmitter, String newNote) {
 		ticketId = counter;
 		title = newTitle;
@@ -69,17 +76,15 @@ public class TrackedTicket {
 		incrementCounter();
 	}
 	
-	//TODO
+	/**
+	 * Constructor for TrackedTicket that takes in a Ticket object.
+	 * Delegates to the default constructor.
+	 * @param t The Ticket object used to create a TrackedTicket.
+	 */
 	public TrackedTicket(Ticket t) {
 		this(t.getTitle(), t.getSubmitter(), "");
-		
-		ticketId = t.getId();
-		owner = t.getOwner();
-
-		this.setFlag(t.getFlag());
 		this.setState(t.getState());
-		
-		
+		this.setFlag(t.getFlag());
 	} 
 	
 	/**
@@ -127,19 +132,19 @@ public class TrackedTicket {
 	 * @param newStateName The string representation of the state you wish to set.
 	 */
 	private void setState(String newStateName) {
-		if (newStateName.equals(newState.getStateName())) {
+		if (newStateName.equals(NEW_NAME)) {
 			state = newState;
 		}
-		else if (newStateName.equals(assignedState.getStateName())) {
+		else if (newStateName.equals(ASSIGNED_NAME)) {
 			state = assignedState;
 		}
-		else if (newStateName.equals(workingState.getStateName())) {
+		else if (newStateName.equals(WORKING_NAME)) {
 			state = workingState;
 		}
-		else if (newStateName.equals(feedbackState.getStateName())) {
+		else if (newStateName.equals(FEEDBACK_NAME)) {
 			state = feedbackState;
 		}
-		else if (newStateName.equals(closedState.getStateName())) {
+		else if (newStateName.equals(CLOSED_NAME)) {
 			state = closedState;
 		}
 	}
@@ -219,7 +224,9 @@ public class TrackedTicket {
 	 */
 	public Ticket getXMLTicket() {
 		Ticket newTick = new Ticket();
-		
+		NoteList newNotes = new NoteList();
+		NoteItem curNote = new NoteItem();
+
 		newTick.setId(this.getTicketId());
 		newTick.setTitle(this.getTitle());
 		newTick.setSubmitter(this.getSubmitter());
@@ -227,8 +234,11 @@ public class TrackedTicket {
 		newTick.setFlag(this.getFlagString());
 		newTick.setState(this.getStateName());
 		
-		//TODO
-		NoteList newNotes = new NoteList();
+		for (int i = 0; i < this.getNotes().size(); i++) {
+			curNote.setNoteAuthor(this.getNotes().get(i).getNoteAuthor());
+			curNote.setNoteText(this.getNotes().get(i).getNoteText());
+			newNotes.getNotes().add(curNote);
+		}
 		newTick.setNoteList(newNotes);
 		
 		return newTick;
