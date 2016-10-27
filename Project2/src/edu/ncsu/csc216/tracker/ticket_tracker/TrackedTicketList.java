@@ -42,9 +42,16 @@ public class TrackedTicketList {
 		return newTick.getTicketId();
 	}
 	
-	//TODO
+	/**
+	 * Takes in a List of Ticket objects.  Iterates through the List,
+	 * converts each Ticket to a TrackedTicket, adds the TrackedTicket
+	 * to the TrackedTicketList.
+	 * @param list The List of Tickets that are to be added to the TrackedTicketList.
+	 */
 	public void addXMLTickets(List<Ticket> list) {
-		
+		for (int i = 0; i < list.size(); i++) {
+			tickets.add(new TrackedTicket(list.get(i)));
+		}
 	}
 	
 	/**

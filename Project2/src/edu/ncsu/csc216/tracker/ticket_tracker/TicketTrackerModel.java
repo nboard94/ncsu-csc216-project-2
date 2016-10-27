@@ -1,5 +1,13 @@
 package edu.ncsu.csc216.tracker.ticket_tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.ncsu.csc216.ticket.xml.Ticket;
+import edu.ncsu.csc216.ticket.xml.TicketIOException;
+import edu.ncsu.csc216.ticket.xml.TicketList;
+import edu.ncsu.csc216.ticket.xml.TicketReader;
+import edu.ncsu.csc216.ticket.xml.TicketWriter;
 import edu.ncsu.csc216.tracker.command.Command;
 import edu.ncsu.csc216.tracker.ticket.TrackedTicket;
 
@@ -30,13 +38,18 @@ public class TicketTrackerModel {
 	}
 	
 	//TODO
-	public void saveTicketsToFile(String s) {
+	public void saveTicketsToFile(String outputFile) throws IllegalArgumentException {
 		
 	}
 	
 	//TODO
-	public void loadTicketsFromFile(String s) {
-		
+	public void loadTicketsFromFile(String inputFile) throws IllegalArgumentException {
+		try {
+			TicketReader tickRead = new TicketReader(inputFile);
+			trackedTicketList.addXMLTickets(tickRead.getTickets());
+		} catch (TicketIOException e) {
+			throw new IllegalArgumentException();
+		}		
 	}
 	
 	//TODO

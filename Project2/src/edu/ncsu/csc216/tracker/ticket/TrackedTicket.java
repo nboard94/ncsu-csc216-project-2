@@ -1,6 +1,8 @@
 package edu.ncsu.csc216.tracker.ticket;
 
 import java.util.ArrayList;
+
+import edu.ncsu.csc216.ticket.xml.NoteList;
 import edu.ncsu.csc216.ticket.xml.Ticket;
 import edu.ncsu.csc216.tracker.command.Command;
 import edu.ncsu.csc216.tracker.command.Command.CommandValue;
@@ -25,24 +27,34 @@ public class TrackedTicket {
 	private static int counter = 1;
 	/** The ArrayList containing the notes associated with the ticket. */
 	ArrayList<Note> notes = new ArrayList<Note>();
-	
-	//TODO
+	/** The Flag enumeration associated with the TrackedTicket. */
 	public Flag flag;
+	/** The CommandValue enumeration associated with the TrackedTicket. */
 	public CommandValue command;
 	
-	//TODO
+	/** Represents the TrackedTicket's state. */
 	public TicketState state;
+	/** Represents the TrackedTicket's NewState. */
 	public NewState newState;
+	/** Represents the TrackedTicket's AssignedState. */
 	public AssignedState assignedState;
+	/** Represents the TrackedTicket's WorkingState. */
 	public WorkingState workingState;
+	/** Represents the TrackedTicket's FeedbackState. */
 	public FeedbackState feedbackState;
+	/** Represents the TrackedTicket's ClosedState. */
 	public ClosedState closedState;
 	
 	//TODO are these right?
+	/** String representation of NewState. */
 	public static final String NEW_NAME = "New";
+	/** String representation of AssignedState. */
 	public static final String ASSIGNED_NAME = "Assigned";
+	/** String representation of WorkingState. */
 	public static final String WORKING_NAME = "Working";
+	/** String representation of FeedbackState. */
 	public static final String FEEDBACK_NAME = "Feedback";
+	/** String representation of ClosedState. */
 	public static final String CLOSED_NAME = "Closed";
 	
 	
@@ -60,6 +72,14 @@ public class TrackedTicket {
 	//TODO
 	public TrackedTicket(Ticket t) {
 		this(t.getTitle(), t.getSubmitter(), "");
+		
+		ticketId = t.getId();
+		owner = t.getOwner();
+
+		this.setFlag(t.getFlag());
+		this.setState(t.getState());
+		
+		
 	} 
 	
 	/**
@@ -173,9 +193,25 @@ public class TrackedTicket {
 		
 	}
 	
-	//TODO
+	/**
+	 * Converts a TrackedTicket object to a Ticket object.
+	 * @return newTick The newly created Ticket object based off of the TrackedTicket.
+	 */
 	public Ticket getXMLTicket() {
-		return null;
+		Ticket newTick = new Ticket();
+		
+		newTick.setId(this.getTicketId());
+		newTick.setTitle(this.getTitle());
+		newTick.setSubmitter(this.getSubmitter());
+		newTick.setOwner(this.getOwner());
+		newTick.setFlag(this.getFlagString());
+		newTick.setState(this.getStateName());
+		
+		//TODO
+		NoteList newNotes = new NoteList();
+		newTick.setNoteList(newNotes);
+		
+		return newTick;
 	}
 	
 	/**
