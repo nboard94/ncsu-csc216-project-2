@@ -122,6 +122,10 @@ public class TrackedTicket {
 		}
 	}
 
+	/**
+	 * Sets the TrackedTicket's state to the desired new state.
+	 * @param newStateName The string representation of the state you wish to set.
+	 */
 	private void setState(String newStateName) {
 		if (newStateName.equals(newState.getStateName())) {
 			state = newState;
@@ -138,9 +142,6 @@ public class TrackedTicket {
 		else if (newStateName.equals(closedState.getStateName())) {
 			state = closedState;
 		}
-		else {
-			state = null;
-		}
 	}
 	
 	/**
@@ -151,9 +152,20 @@ public class TrackedTicket {
 		return flag;
 	}
 	
-	//TODO
-	private void setFlag(String s) {
-		
+	/**
+	 * Sets the flag of the TrackedTicket.
+	 * @param flagStr The string representation of the Flag enumeration to set flag to.
+	 */
+	private void setFlag(String flagStr) {
+		if (flagStr.equals(Flag.DUPLICATE.toString())) {
+			this.flag = Flag.DUPLICATE;
+		}
+		else if (flagStr.equals(Flag.INAPPROPRIATE.toString())) {
+			this.flag = Flag.INAPPROPRIATE;
+		}
+		else if (flagStr.equals(Flag.RESOLVED.toString())) {
+			this.flag = Flag.RESOLVED;
+		}
 	}
 	
 	/**
@@ -188,9 +200,17 @@ public class TrackedTicket {
 		return notes;
 	}
 	
-	//TODO
-	public void update(Command c) {
-		
+	/**
+	 * Delegates to the state's updateState method.
+	 * @param c The command to pass.
+	 * @throws UnsupportedOperationException Thrown is UnsupportedOperationException is caught.
+	 */
+	public void update(Command c) throws UnsupportedOperationException {
+		try {
+			state.updateState(c);
+		} catch (UnsupportedOperationException e){
+			throw new UnsupportedOperationException();
+		}
 	}
 	
 	/**
@@ -222,9 +242,11 @@ public class TrackedTicket {
 		counter = newCount;
 	}
 	
-	//TODO
+	/**
+	 * Retrieves an array of all notes associated with the TrackedTicket.
+	 * @return noteArray A 2D array that contains all notes associated with the TrackedTicket.
+	 */
 	public String[][] getNotesArray() {
-		
 		String[][] noteArray = new String[notes.size()][2];
 		
 		for (int i = 0; i < notes.size(); i++) {
@@ -236,9 +258,23 @@ public class TrackedTicket {
 		return noteArray;
 	}
 
-	//TODO
+	/**
+	 * Retrieves a string representation of the TrackedTicket's flag enumeration.
+	 * @return A string value based on the flag enumeration, otherwise null.
+	 */
 	public String getFlagString() {
-		return null;
+		if (this.flag == Flag.DUPLICATE) {
+			return "duplicate";
+		}
+		else if (this.flag == Flag.INAPPROPRIATE) {
+			return "innappropriate";
+		}
+		else if (this.flag == Flag.RESOLVED) {
+			return "resolved";
+		}
+		else {
+			return null;
+		}
 	}
 
 	/**
