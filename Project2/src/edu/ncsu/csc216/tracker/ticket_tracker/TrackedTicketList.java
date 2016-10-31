@@ -113,9 +113,14 @@ public class TrackedTicketList {
 		return ticketById;
 	}
 	
-	//TODO
-	public void executeCommand(int i, Command c) {
-		
+	/**
+	 * Sends the command down the the TrackedTicket with
+	 * the id matching the parameter.
+	 * @param id The ID of the ticket to be updated.
+	 * @param c The command to apply to the ticket.
+	 */
+	public void executeCommand(int id, Command c) {
+		this.getTicketById(id).update(c);
 	}
 	
 	/**

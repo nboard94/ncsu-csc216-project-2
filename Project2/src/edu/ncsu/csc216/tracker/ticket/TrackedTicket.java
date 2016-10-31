@@ -8,6 +8,7 @@ import edu.ncsu.csc216.ticket.xml.Ticket;
 import edu.ncsu.csc216.tracker.command.Command;
 import edu.ncsu.csc216.tracker.command.Command.CommandValue;
 import edu.ncsu.csc216.tracker.command.Command.Flag;
+import edu.ncsu.csc216.tracker.ticket_tracker.TrackedTicketList;
 
 /**
  * Class representing a ticket object.  Includes an inner interface 
@@ -69,6 +70,7 @@ public class TrackedTicket {
 	public TrackedTicket(String newTitle, String newSubmitter, String newNote) {
 		ticketId = counter;
 		title = newTitle;
+		submitter = newSubmitter;
 
 		this.setState(NEW_NAME);
 		notes.add(new Note(newSubmitter, newNote));
@@ -107,19 +109,19 @@ public class TrackedTicket {
 	 * @return The name of the state, otherwise null.
 	 */
 	public String getStateName() {
-		if (state.equals(newState)) {
+		if (this.state == newState) {
 			return NEW_NAME;
 		}
-		else if (state.equals(assignedState)) {
+		else if (this.state == assignedState) {
 			return ASSIGNED_NAME;
 		}
-		else if (state.equals(workingState)) {
+		else if (this.state == workingState) {
 			return WORKING_NAME;
 		}
-		else if (state.equals(feedbackState)) {
+		else if (this.state == feedbackState) {
 			return FEEDBACK_NAME;
 		}
-		else if (state.equals(closedState)) {
+		else if (this.state == closedState) {
 			return CLOSED_NAME;
 		}
 		else {
@@ -340,6 +342,7 @@ public class TrackedTicket {
 		 */
 		public void updateState(Command c) {
 			if (c.getCommand() == CommandValue.POSSESSION) {
+				owner = c.getOwner();
 				state = assignedState;
 			}
 			else {
@@ -383,9 +386,12 @@ public class TrackedTicket {
 		 */
 		public void updateState(Command c) {
 			if (c.command == CommandValue.ACCEPTED) {
+				//TODO
+				//How to determine if owner has accepted ticket?
 				state = workingState;
 			}
 			else if (c.command == CommandValue.CLOSED) {
+				flag = c.getFlag();
 				state = closedState;
 			}
 			else {
@@ -428,15 +434,20 @@ public class TrackedTicket {
 		 */
 		public void updateState(Command c) {
 			if (c.command == CommandValue.PROGRESS) {
+				notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
 				state = workingState;
 			}
 			else if (c.command == CommandValue.FEEDBACK) {
+				//TODO
+				//How is feedback requested?  Through a note?
 				state = feedbackState;
 			}
 			else if (c.command == CommandValue.CLOSED) {
+				flag = flag.RESOLVED;
 				state = closedState;
 			}
 			else if (c.command == CommandValue.POSSESSION) {
+				owner = c.getOwner();
 				state = assignedState;
 			}
 			else {
@@ -479,6 +490,8 @@ public class TrackedTicket {
 		 */
 		public void updateState(Command c) {
 			if (c.command == CommandValue.FEEDBACK) {
+				//TODO
+				//How is feedback provided?  Through a note?
 				state = workingState;
 			}
 			else {
