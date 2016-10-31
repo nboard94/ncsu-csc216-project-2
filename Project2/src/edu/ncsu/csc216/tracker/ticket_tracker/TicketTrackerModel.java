@@ -1,5 +1,6 @@
 package edu.ncsu.csc216.tracker.ticket_tracker;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,12 +38,30 @@ public class TicketTrackerModel {
 		return tickTrack;
 	}
 	
-	//TODO
+	/**
+	 * Adds tickets from the trackedTicketList to the TicketWriter,
+	 * and then marshals the data to the specified file.
+	 * @param outputFile The file to save the tickets to.
+	 * @throws IllegalArgumentException If TicketIOException is caught.
+	 */
 	public void saveTicketsToFile(String outputFile) throws IllegalArgumentException {
-		
+		try {
+			TicketWriter tickWrite = new TicketWriter(outputFile);
+			
+			for (int i = 0; i < trackedTicketList.tickets.size(); i++) {
+				tickWrite.addItem(trackedTicketList.tickets.get(i).getXMLTicket());
+			}
+			
+			tickWrite.marshal();
+			
+		} catch (TicketIOException e) {
+			throw new IllegalArgumentException();
+		}
 	}
 	
 	/**
+	 * Retrieves XMLTickets from a file and adds them to
+	 * the trackedTicketList.
 	 * @param inputFile The file to load the tickets from.
 	 * @throws IllegalArgumentException If TicketIOException is caught.
 	 */
@@ -132,9 +151,14 @@ public class TicketTrackerModel {
 		return trackedTicketList.getTicketById(id);
 	}
 	
-	//TODO
-	public void executeCommand(int i, Command c) {
-		trackedTicketList.executeCommand(i, c);
+	/**
+	 * Sends the command down the the TrackedTicket with
+	 * the id matching the parameter.
+	 * @param id The ID of the ticket to be updated.
+	 * @param c The command to apply to the ticket.
+	 */
+	public void executeCommand(int id, Command c) {
+		trackedTicketList.executeCommand(id, c);
 	}
 	
 	/**
