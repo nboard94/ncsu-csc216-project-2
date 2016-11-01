@@ -23,4 +23,15 @@ public class TrackedTicketListTest {
 		assertEquals("ndboard", tList.getTrackedTickets().get(0).getNotes().get(0).getNoteAuthor());
 		assertEquals("apple", tList.getTrackedTickets().get(0).getNotes().get(0).getNoteText());
 	}
+	
+	@Test
+	public void testAddXMLTicket() {
+		
+	}
+	
+	@Test
+	public void testGetTicketsByOwner() {
+		TicketTrackerModel ttm = TicketTrackerModel.getInstance();
+		
+	}
 }

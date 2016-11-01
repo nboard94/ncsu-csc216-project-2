@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import edu.ncsu.csc216.ticket.xml.Ticket;
+import edu.ncsu.csc216.tracker.command.Command;
+import edu.ncsu.csc216.tracker.command.Command.CommandValue;
+import edu.ncsu.csc216.tracker.command.Command.Flag;
 
 public class TrackedTicketTest {
 
@@ -32,6 +35,53 @@ public class TrackedTicketTest {
 		Ticket t = new Ticket();
 		t.setTitle("Ticket1");
 		t.setSubmitter("ndboard");
+	}
+	
+	@Test
+	public void testGetStateName() {
+		TrackedTicket t1 = new TrackedTicket("testTicket", "ndboard", "PLZ WORK");
+		assertEquals("new", t1.getStateName());
+		
+	}
+	
+	@Test
+	public void testStatePattern() {
+		//Command(CommandValue newCommand, String newOwner, Flag newFlag, String newNote, String newNoteAuthor)
+		
+		//create new ticket and test for NewState
+		TrackedTicket t1 = new TrackedTicket("testTicket", "ndboard", "PLZ WORK");
+		assertEquals("new", t1.getStateName());
+		
+		//test transition from NewState to AssignedState
+		Command c21 = new Command(CommandValue.POSSESSION, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
+		try {
+			t1.update(c21);
+			assertEquals("assigned", t1.getStateName());
+
+		} catch (UnsupportedOperationException e) {
+			fail();
+		}
+
+		//test transition from AssignedState to WorkingState
+		Command c31 = new Command(CommandValue.ACCEPTED, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
+		try {
+			t1.update(c31);
+			assertEquals("working", t1.getStateName());
+
+		} catch (UnsupportedOperationException e) {
+			fail();
+		}
+		//test transition from AssignedState to ClosedState
+		
+		//test transition from WorkingState to WorkingState
+		//test transition from WorkingState to FeedbackState
+		//test transition from WorkingState to ClosedState
+		//test transition from WorkingState to AssignedState
+
+		//test transition from FeedbackState to WorkingState
+
+		//test transition from ClosedState to WorkingState
+		//test transition from ClosedState to AssignedState
 	}
 	
 }

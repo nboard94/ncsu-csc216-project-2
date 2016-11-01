@@ -353,7 +353,7 @@ public class TrackedTicket {
 					throw new IllegalArgumentException("Invalid note text.");
 				}
 				else {
-					state = assignedState;
+					setState(ASSIGNED_NAME);
 					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
 				}
 				
@@ -407,7 +407,7 @@ public class TrackedTicket {
 					throw new IllegalArgumentException("Invalid note text.");
 				}
 				else {
-					state = workingState;
+					setState(WORKING_NAME);
 					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
 				}
 				
@@ -423,7 +423,7 @@ public class TrackedTicket {
 						throw new IllegalArgumentException("Invalid note text.");
 					}
 					else {
-						state = closedState;
+						setState(CLOSED_NAME);
 						flag = c.getFlag();
 						notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
 					}
@@ -482,7 +482,7 @@ public class TrackedTicket {
 				}
 				else {
 					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-					state = workingState;
+					setState(WORKING_NAME);
 				}
 			}
 			else if (c.command == CommandValue.FEEDBACK) {
@@ -495,7 +495,7 @@ public class TrackedTicket {
 				}
 				else {
 					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-					state = feedbackState;
+					setState(FEEDBACK_NAME);
 				}
 			}
 			else if (c.command == CommandValue.CLOSED) {
@@ -511,7 +511,7 @@ public class TrackedTicket {
 					else {
 						notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
 						flag = Flag.RESOLVED;
-						state = closedState;
+						setState(CLOSED_NAME);
 					}
 				}
 			}
@@ -527,7 +527,7 @@ public class TrackedTicket {
 				}
 				else {
 					owner = c.getOwner();
-					state = assignedState;
+					setState(ASSIGNED_NAME);
 					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
 				}
 			}
@@ -580,7 +580,7 @@ public class TrackedTicket {
 				}
 				else {
 					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-					state = workingState;
+					setState(WORKING_NAME);;
 				}
 			}
 			else {
@@ -632,7 +632,7 @@ public class TrackedTicket {
 				}
 				else {
 					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-					state = workingState;
+					setState(WORKING_NAME);
 				}
 			}
 			else if (c.command == CommandValue.POSSESSION) {
@@ -648,7 +648,7 @@ public class TrackedTicket {
 				}
 				else {
 					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-					state = assignedState;
+					setState(ASSIGNED_NAME);
 				}
 			}
 			
