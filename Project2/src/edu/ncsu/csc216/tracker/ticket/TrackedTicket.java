@@ -413,10 +413,26 @@ public class TrackedTicket {
 				
 			}
 			else if (c.command == CommandValue.CLOSED) {
-				state = closedState;
-				flag = c.getFlag();
-				notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-			}
+				
+				if (c.getFlag() == Flag.DUPLICATE || c.getFlag() == Flag.INAPPROPRIATE) {
+					
+					if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
+						throw new IllegalArgumentException("Invalid note author id.");
+					}
+					else if (c.getNoteText() == null || c.getNoteText() == "") {
+						throw new IllegalArgumentException("Invalid note text.");
+					}
+					else {
+						state = closedState;
+						flag = c.getFlag();
+						notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+					}
+				}
+				else {
+					throw new IllegalArgumentException("Invalid flag.");
+				}
+				
+							}
 			else {
 				throw new UnsupportedOperationException();
 			}
@@ -457,21 +473,63 @@ public class TrackedTicket {
 		 */
 		public void updateState(Command c) {
 			if (c.command == CommandValue.PROGRESS) {
-				notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-				state = workingState;
+				
+				if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
+					throw new IllegalArgumentException("Invalid note author id.");
+				}
+				else if (c.getNoteText() == null || c.getNoteText() == "") {
+					throw new IllegalArgumentException("Invalid note text.");
+				}
+				else {
+					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+					state = workingState;
+				}
 			}
 			else if (c.command == CommandValue.FEEDBACK) {
-				//TODO
-				//How is feedback requested?  Through a note?
-				state = feedbackState;
+
+				if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
+					throw new IllegalArgumentException("Invalid note author id.");
+				}
+				else if (c.getNoteText() == null || c.getNoteText() == "") {
+					throw new IllegalArgumentException("Invalid note text.");
+				}
+				else {
+					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+					state = feedbackState;
+				}
 			}
 			else if (c.command == CommandValue.CLOSED) {
-				flag = flag.RESOLVED;
-				state = closedState;
+				
+				if (c.getFlag() == Flag.DUPLICATE || c.getFlag() == Flag.INAPPROPRIATE || c.getFlag() == Flag.RESOLVED) {
+					
+					if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
+						throw new IllegalArgumentException("Invalid note author id.");
+					}
+					else if (c.getNoteText() == null || c.getNoteText() == "") {
+						throw new IllegalArgumentException("Invalid note text.");
+					}
+					else {
+						notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+						flag = Flag.RESOLVED;
+						state = closedState;
+					}
+				}
 			}
 			else if (c.command == CommandValue.POSSESSION) {
-				owner = c.getOwner();
-				state = assignedState;
+				if (c.getOwner() == null || c.getOwner() == "") {
+					throw new IllegalArgumentException("Invalid owner id.");
+				}
+				else if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
+					throw new IllegalArgumentException("Invalid note author id.");
+				}
+				else if (c.getNoteText() == null || c.getNoteText() == "") {
+					throw new IllegalArgumentException("Invalid note text.");
+				}
+				else {
+					owner = c.getOwner();
+					state = assignedState;
+					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+				}
 			}
 			else {
 				throw new UnsupportedOperationException();
@@ -513,9 +571,17 @@ public class TrackedTicket {
 		 */
 		public void updateState(Command c) {
 			if (c.command == CommandValue.FEEDBACK) {
-				//TODO
-				//How is feedback provided?  Through a note?
-				state = workingState;
+				
+				if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
+					throw new IllegalArgumentException("Invalid note author id.");
+				}
+				else if (c.getNoteText() == null || c.getNoteText() == "") {
+					throw new IllegalArgumentException("Invalid note text.");
+				}
+				else {
+					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+					state = workingState;
+				}
 			}
 			else {
 				throw new UnsupportedOperationException();
@@ -557,11 +623,36 @@ public class TrackedTicket {
 		 */
 		public void updateState(Command c) {
 			if (c.command == CommandValue.ACCEPTED) {
-				state = workingState;
+				
+				if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
+					throw new IllegalArgumentException("Invalid note author id.");
+				}
+				else if (c.getNoteText() == null || c.getNoteText() == "") {
+					throw new IllegalArgumentException("Invalid note text.");
+				}
+				else {
+					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+					state = workingState;
+				}
 			}
 			else if (c.command == CommandValue.POSSESSION) {
-				state = assignedState;
+				
+				if (c.getOwner() == null || c.getOwner() == "") {
+					throw new IllegalArgumentException("Invalid owner id");
+				}
+				else if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
+					throw new IllegalArgumentException("Invalid note author id.");
+				}
+				else if (c.getNoteText() == null || c.getNoteText() == "") {
+					throw new IllegalArgumentException("Invalid note text.");
+				}
+				else {
+					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+					state = assignedState;
+				}
 			}
+			
+
 		}
 		
 		/**
