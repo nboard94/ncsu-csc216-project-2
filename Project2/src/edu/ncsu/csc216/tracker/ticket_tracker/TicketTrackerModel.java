@@ -45,14 +45,25 @@ public class TicketTrackerModel {
 	 * @throws IllegalArgumentException If TicketIOException is caught.
 	 */
 	public void saveTicketsToFile(String outputFile) throws IllegalArgumentException {
+		
+		TrackedTicket currentTrackedTick;
+		Ticket currentTick;
+		TicketList ticksToSave = new TicketList();
+		
+		//TODO
+		//Is this implemented right?
+		//Why Marshal() twice?
 		try {
 			TicketWriter tickWrite = new TicketWriter(outputFile);
 			
-			for (int i = 0; i < trackedTicketList.tickets.size(); i++) {
-				tickWrite.addItem(trackedTicketList.tickets.get(i).getXMLTicket());
+			for (int i = 0; i < trackedTicketList.getTrackedTickets().size(); i++) {
+				currentTrackedTick = trackedTicketList.getTrackedTickets().get(i);
+				currentTick = currentTrackedTick.getXMLTicket();
+				ticksToSave.getTickets().add(currentTick);
+				tickWrite.addItem(currentTick);
+				tickWrite.marshal();
+				tickWrite.marshal();
 			}
-			
-			tickWrite.marshal();
 			
 		} catch (TicketIOException e) {
 			throw new IllegalArgumentException();
@@ -126,7 +137,7 @@ public class TicketTrackerModel {
 	 * @return ticketList A 2D array with the TrackedTicket's Id, state, and title.
 	 */
 	public Object[][] getTicketListBySubmitterAsArray(String submitter) {
-		Object[][] ticketList = new Object[trackedTicketList.tickets.size()][3];
+		Object[][] ticketList = new Object[trackedTicketList.getTrackedTickets().size()][3];
 		
 		for (int i = 0; i < trackedTicketList.tickets.size(); i++) {
 			if (trackedTicketList.tickets.get(i).getSubmitter() == null) {
@@ -139,6 +150,7 @@ public class TicketTrackerModel {
 		}
 		
 		return ticketList;
+		
 	}
 	
 	/**

@@ -8,12 +8,16 @@ import edu.ncsu.csc216.ticket.xml.Ticket;
 import edu.ncsu.csc216.tracker.command.Command;
 import edu.ncsu.csc216.tracker.command.Command.CommandValue;
 import edu.ncsu.csc216.tracker.command.Command.Flag;
+import edu.ncsu.csc216.tracker.ticket_tracker.TicketTrackerModel;
 
 public class TrackedTicketTest {
 
 	
+	
 	@Test
 	public void testTrackedTicketStringStringString() {
+		TicketTrackerModel.getInstance().createNewTicketList();
+		
 		TrackedTicket t1 = new TrackedTicket("Ticket1", "ndboard", "apple");
 		TrackedTicket t2 = new TrackedTicket("Ticket2", "ndboard", "banana");
 		TrackedTicket t3 = new TrackedTicket("Ticket3", "ndboard", "cherry");
