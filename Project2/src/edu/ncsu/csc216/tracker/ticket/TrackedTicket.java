@@ -342,8 +342,21 @@ public class TrackedTicket {
 		 */
 		public void updateState(Command c) {
 			if (c.getCommand() == CommandValue.POSSESSION) {
-				owner = c.getOwner();
-				state = assignedState;
+				
+				if (c.getOwner() == null || c.getOwner() == "") {
+					throw new IllegalArgumentException("Invalid owner id.");
+				}
+				else if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
+					throw new IllegalArgumentException("Invalid note author id.");
+				}
+				else if (c.getNoteText() == null || c.getNoteText() == "") {
+					throw new IllegalArgumentException("Invalid note text.");
+				}
+				else {
+					state = assignedState;
+					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+				}
+				
 			}
 			else {
 				throw new UnsupportedOperationException();
@@ -386,13 +399,23 @@ public class TrackedTicket {
 		 */
 		public void updateState(Command c) {
 			if (c.command == CommandValue.ACCEPTED) {
-				//TODO
-				//How to determine if owner has accepted ticket?
-				state = workingState;
+				
+				if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
+					throw new IllegalArgumentException("Invalid note author id.");
+				}
+				else if (c.getNoteText() == null || c.getNoteText() == "") {
+					throw new IllegalArgumentException("Invalid note text.");
+				}
+				else {
+					state = workingState;
+					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+				}
+				
 			}
 			else if (c.command == CommandValue.CLOSED) {
-				flag = c.getFlag();
 				state = closedState;
+				flag = c.getFlag();
+				notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
 			}
 			else {
 				throw new UnsupportedOperationException();
