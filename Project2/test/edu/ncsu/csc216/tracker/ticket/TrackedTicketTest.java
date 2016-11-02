@@ -61,7 +61,7 @@ public class TrackedTicketTest {
 	}
 	
 	@Test
-	public void getXMLTicket() {
+	public void testGetXMLTicket() {
 		TrackedTicket t1 = new TrackedTicket("testTicket", "ndboard", "PLZ WORK");
 
 		Ticket t = t1.getXMLTicket();
@@ -69,10 +69,24 @@ public class TrackedTicketTest {
 		assertEquals("testTicket", t.getTitle());
 		assertEquals("ndboard", t.getSubmitter());
 		assertEquals("ndboard", t.getNoteList().getNotes().get(0).getNoteAuthor());
-		assertEquals("PLZ WORK", t.getNoteList().getNotes().get(0).getNoteText());
-		
-		
-		
+		assertEquals("PLZ WORK", t.getNoteList().getNotes().get(0).getNoteText());	
+	}
+	
+	@Test
+	public void testGetNotesArray() {
+		TrackedTicket t1 = new TrackedTicket("testTicket", "ndboard1", "note1");
+		t1.notes.add(new Note("ndboard2", "note2"));
+		t1.notes.add(new Note("ndboard3", "note3"));		
+
+		String[][] noteArray = t1.getNotesArray();
+		assertEquals(3, noteArray.length);
+		assertEquals("ndboard1", noteArray[0][0]);
+		assertEquals("ndboard2", noteArray[1][0]);
+		assertEquals("ndboard3", noteArray[2][0]);
+		assertEquals("note1", noteArray[0][1]);
+		assertEquals("note2", noteArray[1][1]);
+		assertEquals("note3", noteArray[2][1]);
+
 	}
 	
 	@Test
