@@ -37,15 +37,15 @@ public class TrackedTicket {
 	/** Represents the TrackedTicket's state. */
 	public TicketState state;
 	/** Represents the TrackedTicket's NewState. */
-	public NewState newState;
+	public NewState newState = new NewState();
 	/** Represents the TrackedTicket's AssignedState. */
-	public AssignedState assignedState;
+	public AssignedState assignedState = new AssignedState();
 	/** Represents the TrackedTicket's WorkingState. */
-	public WorkingState workingState;
+	public WorkingState workingState = new WorkingState();
 	/** Represents the TrackedTicket's FeedbackState. */
-	public FeedbackState feedbackState;
+	public FeedbackState feedbackState = new FeedbackState();
 	/** Represents the TrackedTicket's ClosedState. */
-	public ClosedState closedState;
+	public ClosedState closedState = new ClosedState();;
 	
 	/** String representation of NewState. */
 	public static final String NEW_NAME = "new";
@@ -214,7 +214,22 @@ public class TrackedTicket {
 	 */
 	public void update(Command c) throws UnsupportedOperationException {
 		try {
-			state.updateState(c);
+			if (this.getStateName().equals(NEW_NAME)) {
+				this.newState.updateState(c);
+			}
+			else if (this.getStateName().equals(ASSIGNED_NAME)) {
+				assignedState.updateState(c);
+			}
+			else if (this.getStateName().equals(WORKING_NAME)) {
+				workingState.updateState(c);
+			}
+			else if (this.getStateName().equals(FEEDBACK_NAME)) {
+				workingState.updateState(c);
+			}
+			else if (this.getStateName().equals(CLOSED_NAME)) {
+				closedState.updateState(c);
+			}
+			
 		} catch (UnsupportedOperationException e){
 			throw new UnsupportedOperationException();
 		}
@@ -343,20 +358,8 @@ public class TrackedTicket {
 		public void updateState(Command c) {
 			if (c.getCommand() == CommandValue.POSSESSION) {
 				
-				if (c.getOwner() == null || c.getOwner() == "") {
-					throw new IllegalArgumentException("Invalid owner id.");
-				}
-				else if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
-					throw new IllegalArgumentException("Invalid note author id.");
-				}
-				else if (c.getNoteText() == null || c.getNoteText() == "") {
-					throw new IllegalArgumentException("Invalid note text.");
-				}
-				else {
-					setState(ASSIGNED_NAME);
-					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-				}
-				
+				setState(ASSIGNED_NAME);
+				notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
 			}
 			else {
 				throw new UnsupportedOperationException();
@@ -399,40 +402,21 @@ public class TrackedTicket {
 		 */
 		public void updateState(Command c) {
 			if (c.command == CommandValue.ACCEPTED) {
-				
-				if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
-					throw new IllegalArgumentException("Invalid note author id.");
-				}
-				else if (c.getNoteText() == null || c.getNoteText() == "") {
-					throw new IllegalArgumentException("Invalid note text.");
-				}
-				else {
-					setState(WORKING_NAME);
-					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-				}
-				
+				setState(WORKING_NAME);
+				notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
 			}
 			else if (c.command == CommandValue.CLOSED) {
 				
 				if (c.getFlag() == Flag.DUPLICATE || c.getFlag() == Flag.INAPPROPRIATE) {
-					
-					if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
-						throw new IllegalArgumentException("Invalid note author id.");
-					}
-					else if (c.getNoteText() == null || c.getNoteText() == "") {
-						throw new IllegalArgumentException("Invalid note text.");
-					}
-					else {
-						setState(CLOSED_NAME);
-						flag = c.getFlag();
-						notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-					}
+					setState(CLOSED_NAME);
+					flag = c.getFlag();
+					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
 				}
 				else {
 					throw new IllegalArgumentException("Invalid flag.");
 				}
 				
-							}
+			}
 			else {
 				throw new UnsupportedOperationException();
 			}

@@ -88,7 +88,7 @@ public class TrackedTicketList {
 		ArrayList<TrackedTicket> ticketsBySubmitter = new ArrayList<TrackedTicket>();
 		
 		for (int i = 0; i < tickets.size(); i++) {
-			if (tickets.get(i).getSubmitter() == submitter) {
+			if (tickets.get(i).getSubmitter().equals(submitter)) {
 				ticketsBySubmitter.add(tickets.get(i));
 			}
 		}

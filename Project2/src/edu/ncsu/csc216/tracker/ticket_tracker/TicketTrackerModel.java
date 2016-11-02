@@ -137,16 +137,31 @@ public class TicketTrackerModel {
 	 * @return ticketList A 2D array with the TrackedTicket's Id, state, and title.
 	 */
 	public Object[][] getTicketListBySubmitterAsArray(String submitter) {
-		Object[][] ticketList = new Object[trackedTicketList.getTrackedTickets().size()][3];
 		
+		int count = 0;
+		for (int i = 0; i < trackedTicketList.getTrackedTickets().size(); i++) {
+			if (trackedTicketList.getTrackedTickets().get(i).getSubmitter().equals(submitter)) {
+				count++;
+			}
+		}
+		
+		Object[][] ticketList = new Object[count][3];
+
+		int add = 0;
+		//TODO
+		//pull out tickets with submitter
 		for (int i = 0; i < trackedTicketList.tickets.size(); i++) {
 			if (trackedTicketList.tickets.get(i).getSubmitter() == null) {
 				throw new IllegalArgumentException();
 			}
+			if (trackedTicketList.tickets.get(i).getSubmitter().equals(submitter)) {
+				ticketList[add][0] = trackedTicketList.tickets.get(i).getTicketId();
+				ticketList[add][1] = trackedTicketList.tickets.get(i).getStateName();
+				ticketList[add][2] = trackedTicketList.tickets.get(i).getTitle();
+				
+				add++;
+			}
 			
-			ticketList[i][0] = trackedTicketList.getTicketsBySubmitter(submitter).get(i).getTicketId();
-			ticketList[i][1] = trackedTicketList.getTicketsBySubmitter(submitter).get(i).getStateName();
-			ticketList[i][2] = trackedTicketList.getTicketsBySubmitter(submitter).get(i).getTitle();
 		}
 		
 		return ticketList;

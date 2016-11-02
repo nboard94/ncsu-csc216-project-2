@@ -57,10 +57,11 @@ public class TrackedTicketTest {
 		assertEquals("new", t1.getStateName());
 		
 		//test transition from NewState to AssignedState
+		TrackedTicket t2 = t1;
 		Command c21 = new Command(CommandValue.POSSESSION, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
 		try {
-			t1.update(c21);
-			assertEquals("assigned", t1.getStateName());
+			t2.update(c21);
+			assertEquals("assigned", t2.getStateName());
 
 		} catch (UnsupportedOperationException e) {
 			fail();
