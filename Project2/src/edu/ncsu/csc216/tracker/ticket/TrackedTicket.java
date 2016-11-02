@@ -47,15 +47,15 @@ public class TrackedTicket {
 	public ClosedState closedState = new ClosedState();;
 	
 	/** String representation of NewState. */
-	public static final String NEW_NAME = "new";
+	public static final String NEW_NAME = "New";
 	/** String representation of AssignedState. */
-	public static final String ASSIGNED_NAME = "assigned";
+	public static final String ASSIGNED_NAME = "Assigned";
 	/** String representation of WorkingState. */
-	public static final String WORKING_NAME = "working";
+	public static final String WORKING_NAME = "Working";
 	/** String representation of FeedbackState. */
-	public static final String FEEDBACK_NAME = "feedback";
+	public static final String FEEDBACK_NAME = "Feedback";
 	/** String representation of ClosedState. */
-	public static final String CLOSED_NAME = "closed";
+	public static final String CLOSED_NAME = "Closed";
 	
  
 	/**
