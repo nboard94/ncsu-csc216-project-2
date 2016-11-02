@@ -8,7 +8,6 @@ import edu.ncsu.csc216.ticket.xml.Ticket;
 import edu.ncsu.csc216.tracker.command.Command;
 import edu.ncsu.csc216.tracker.command.Command.CommandValue;
 import edu.ncsu.csc216.tracker.command.Command.Flag;
-import edu.ncsu.csc216.tracker.ticket_tracker.TrackedTicketList;
 
 /**
  * Class representing a ticket object.  Includes an inner interface 

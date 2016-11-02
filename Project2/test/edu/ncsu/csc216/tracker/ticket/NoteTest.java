@@ -29,22 +29,30 @@ public class NoteTest {
 		try {
 			n = new Note(null, "This is a note.");
 			fail();
-		} catch (IllegalArgumentException e) {}
+		} catch (IllegalArgumentException e) {
+			assertNull(n);
+		}
 		
 		try {
 			n = new Note("", "This is a note.");
 			fail();
-		} catch (IllegalArgumentException e) {}
+		} catch (IllegalArgumentException e) {
+			assertNull(n);
+		}
 		
 		try {
 			n = new Note("ndboard", null);
 			fail();
-		} catch (IllegalArgumentException e) {}
+		} catch (IllegalArgumentException e) {
+			assertNull(n);
+		}
 		
 		try {
 			n = new Note("ndboard", "");
 			fail();
-		} catch (IllegalArgumentException e) {}
+		} catch (IllegalArgumentException e) {
+			assertNull(n);
+		}
 		
 	}
 

@@ -45,40 +45,56 @@ public class CommandTest {
 		try {
 			c1 = new Command(null, "ndboard", Command.Flag.DUPLICATE, "note", "ndboard");
 			fail();
-		} catch (IllegalArgumentException e) {}
+		} catch (IllegalArgumentException e) {
+			assertNull(c1);
+		}
 		
 		try {
 			c1 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, "note", null);
 			fail();
-		} catch (IllegalArgumentException e) {}
+		} catch (IllegalArgumentException e) {
+			assertNull(c1);
+		}
 		 
 		
 		try {
 			c1 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, "note", "");
 			fail();
-		} catch (IllegalArgumentException e) {}
+		} catch (IllegalArgumentException e) {
+			assertNull(c1);
+		}
 		
 		try {
 			c1 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, null, "ndboard");
 			fail();
-		} catch (IllegalArgumentException e) {}
+		} catch (IllegalArgumentException e) {
+			assertNull(c1);
+		}
 		
 		try {
 			c1 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, "", "ndboard");
 			fail();
-		} catch (IllegalArgumentException e) {}
+		} catch (IllegalArgumentException e) {
+			assertNull(c1);
+		}
 		
 		try {
 			c1 = new Command(Command.CommandValue.POSSESSION, null, Command.Flag.DUPLICATE, "note", "ndboard");
-		} catch (IllegalArgumentException e) {}
+		} catch (IllegalArgumentException e) {
+			assertNull(c1);
+		}
 		
 		try {
 			c1 = new Command(Command.CommandValue.POSSESSION, "", Command.Flag.DUPLICATE, "note", "ndboard");
-		} catch (IllegalArgumentException e) {}
+		} catch (IllegalArgumentException e) {
+			assertNull(c1);
+		}
 		
 		try {
 			c1 = new Command(Command.CommandValue.CLOSED, "ndboard", null, "note", "ndboard");
-		} catch (IllegalArgumentException e) {}
+		} catch (IllegalArgumentException e) {
+			assertNull(c1);
+		}
 	}
 	
 	@Test

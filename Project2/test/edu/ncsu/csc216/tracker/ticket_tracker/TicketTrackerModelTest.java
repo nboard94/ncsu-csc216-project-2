@@ -30,6 +30,8 @@ public class TicketTrackerModelTest {
 		} catch (IllegalArgumentException e) {
 			
 		}
+		
+		assertEquals(0, ttm.getTicketListAsArray().length);
 	}
 	
 	@Test

@@ -12,6 +12,7 @@ public class TrackedTicketListTest {
 	@Test
 	public void testTrackedTicketList() {
 		TrackedTicketList tList = new TrackedTicketList();
+		assertEquals(0, tList.getTrackedTickets().size());
 	}
 	
 	@Test
