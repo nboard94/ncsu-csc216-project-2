@@ -109,7 +109,7 @@ public class TrackedTicketTest {
 		Command n2a = new Command(CommandValue.POSSESSION, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
 		try {
 			tNew.update(n2a);
-			assertEquals("assigned", tNew.getStateName());
+			assertEquals("Assigned", tNew.getStateName());
 		} catch (UnsupportedOperationException e) {
 			fail();
 		}
