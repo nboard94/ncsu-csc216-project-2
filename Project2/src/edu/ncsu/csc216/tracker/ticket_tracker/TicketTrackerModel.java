@@ -137,34 +137,17 @@ public class TicketTrackerModel {
 	 */
 	public Object[][] getTicketListBySubmitterAsArray(String submitter) {
 		
-		int count = 0;
-		for (int i = 0; i < trackedTicketList.getTrackedTickets().size(); i++) {
-			if (trackedTicketList.getTrackedTickets().get(i).getSubmitter().equals(submitter)) {
-				count++;
-			}
+		List<TrackedTicket> list = trackedTicketList.getTicketsBySubmitter(submitter);
+		
+		Object[][] objArray = new Object[list.size()][3];
+		
+		for (int i = 0; i < list.size(); i++) {
+			objArray[i][0] = list.get(i).getTicketId();
+			objArray[i][1] = list.get(i).getStateName();
+			objArray[i][2] = list.get(i).getTitle();
 		}
 		
-		Object[][] ticketList = new Object[count][3];
-
-		int add = 0;
-		//TODO
-		//pull out tickets with submitter
-		for (int i = 0; i < trackedTicketList.tickets.size(); i++) {
-			if (trackedTicketList.tickets.get(i).getSubmitter() == null) {
-				throw new IllegalArgumentException();
-			}
-			if (trackedTicketList.tickets.get(i).getSubmitter().equals(submitter)) {
-				ticketList[add][0] = trackedTicketList.tickets.get(i).getTicketId();
-				ticketList[add][1] = trackedTicketList.tickets.get(i).getStateName();
-				ticketList[add][2] = trackedTicketList.tickets.get(i).getTitle();
-				
-				add++;
-			}
-			
-		}
-		
-		return ticketList;
-		
+		return objArray;
 	}
 	
 	/**
