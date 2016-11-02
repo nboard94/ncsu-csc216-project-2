@@ -84,6 +84,7 @@ public class TrackedTicket {
 	 * @param t The Ticket object used to create a TrackedTicket.
 	 */
 	public TrackedTicket(Ticket t) {
+		this.ticketId = counter;
 		this.title = t.getTitle();
 		this.submitter = t.getSubmitter();
 		Note n = new Note(t.getNoteList().getNotes().get(0).getNoteAuthor(), t.getNoteList().getNotes().get(0).getNoteText());
@@ -99,6 +100,8 @@ public class TrackedTicket {
 		else {
 			this.setState(NEW_NAME);
 		}
+		
+		incrementCounter();
 	} 
 	
 	/**
@@ -185,7 +188,7 @@ public class TrackedTicket {
 		else if (flagStr.equals(Flag.RESOLVED.toString())) {
 			this.flag = Flag.RESOLVED;
 		}
-	}
+	}                                                                                    
 	
 	/**
 	 * Retrieves the ticket's owner.
@@ -274,7 +277,6 @@ public class TrackedTicket {
 			noteArray[i][1] = notes.get(i).getNoteArray()[1];
 
 		}
-		
 		return noteArray;
 	}
 
@@ -451,56 +453,26 @@ public class TrackedTicket {
 		public void updateState(Command c) throws UnsupportedOperationException {
 			if (c.command == CommandValue.PROGRESS) {
 				
-				if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
-					throw new IllegalArgumentException("Invalid note author id.");
-				}
-				else if (c.getNoteText() == null || c.getNoteText() == "") {
-					throw new IllegalArgumentException("Invalid note text.");
-				}
-				else {
-					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-					setState(WORKING_NAME);
-				}
+				notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+				setState(WORKING_NAME);			
 			}
 			else if (c.command == CommandValue.FEEDBACK) {
-
-				if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
-					throw new IllegalArgumentException("Invalid note author id.");
-				}
-				else if (c.getNoteText() == null || c.getNoteText() == "") {
-					throw new IllegalArgumentException("Invalid note text.");
-				}
-				else {
-					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-					setState(FEEDBACK_NAME);
-				}
+				
+				notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+				setState(FEEDBACK_NAME);
 			}
 			else if (c.command == CommandValue.CLOSED) {
 				
 				if (c.getFlag() == Flag.DUPLICATE || c.getFlag() == Flag.INAPPROPRIATE || c.getFlag() == Flag.RESOLVED) {
-					
-					if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
-						throw new IllegalArgumentException("Invalid note author id.");
-					}
-					else if (c.getNoteText() == null || c.getNoteText() == "") {
-						throw new IllegalArgumentException("Invalid note text.");
-					}
-					else {
-						notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-						flag = Flag.RESOLVED;
-						setState(CLOSED_NAME);
-					}
+
+					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+					setFlag("resolved");
+					setState(CLOSED_NAME);
 				}
 			}
 			else if (c.command == CommandValue.POSSESSION) {
 				if (c.getOwner() == null || c.getOwner() == "") {
 					throw new IllegalArgumentException("Invalid owner id.");
-				}
-				else if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
-					throw new IllegalArgumentException("Invalid note author id.");
-				}
-				else if (c.getNoteText() == null || c.getNoteText() == "") {
-					throw new IllegalArgumentException("Invalid note text.");
 				}
 				else {
 					owner = c.getOwner();
@@ -549,16 +521,8 @@ public class TrackedTicket {
 		public void updateState(Command c) throws UnsupportedOperationException {
 			if (c.command == CommandValue.FEEDBACK) {
 				
-				if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
-					throw new IllegalArgumentException("Invalid note author id.");
-				}
-				else if (c.getNoteText() == null || c.getNoteText() == "") {
-					throw new IllegalArgumentException("Invalid note text.");
-				}
-				else {
-					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-					setState(WORKING_NAME);;
-				}
+				notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+				setState(WORKING_NAME);;
 			}
 			else {
 				throw new UnsupportedOperationException();
@@ -601,27 +565,13 @@ public class TrackedTicket {
 		public void updateState(Command c) throws UnsupportedOperationException {
 			if (c.command == CommandValue.PROGRESS) {
 				
-				if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
-					throw new IllegalArgumentException("Invalid note author id.");
-				}
-				else if (c.getNoteText() == null || c.getNoteText() == "") {
-					throw new IllegalArgumentException("Invalid note text.");
-				}
-				else {
-					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-					setState(WORKING_NAME);
-				}
+				notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+				setState(WORKING_NAME);
 			}
 			else if (c.command == CommandValue.POSSESSION) {
 				
 				if (c.getOwner() == null || c.getOwner() == "") {
 					throw new IllegalArgumentException("Invalid owner id");
-				}
-				else if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
-					throw new IllegalArgumentException("Invalid note author id.");
-				}
-				else if (c.getNoteText() == null || c.getNoteText() == "") {
-					throw new IllegalArgumentException("Invalid note text.");
 				}
 				else {
 					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));

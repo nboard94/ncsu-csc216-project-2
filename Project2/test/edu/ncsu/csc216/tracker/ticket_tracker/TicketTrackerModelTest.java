@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.ticket.xml.TicketIOException;
 import edu.ncsu.csc216.tracker.ticket.TrackedTicket;
 
 public class TicketTrackerModelTest {
@@ -17,7 +18,15 @@ public class TicketTrackerModelTest {
 	
 	@Test
 	public void testSaveTicketToFile() {
+		TicketTrackerModel ttm = TicketTrackerModel.getInstance();
+		ttm.createNewTicketList();
 		
+		try {
+			ttm.saveTicketsToFile("test-files/outputTest.xml");
+			
+		} catch (IllegalArgumentException e) {
+			
+		}
 	}
 	
 	@Test
@@ -36,7 +45,7 @@ public class TicketTrackerModelTest {
 		//try to load from valid file
 		try {
 			ttm.loadTicketsFromFile("test-files/ticket1.xml");
-			assertEquals(1,ttm.getTicketListAsArray().length);
+			assertEquals(5,ttm.getTicketListAsArray().length);
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
@@ -75,4 +84,6 @@ public class TicketTrackerModelTest {
 		Object[][] arr3 = ttm.getTicketListBySubmitterAsArray("submitter2");
 		assertEquals(2, arr3.length);
 	}
+	
+
 }

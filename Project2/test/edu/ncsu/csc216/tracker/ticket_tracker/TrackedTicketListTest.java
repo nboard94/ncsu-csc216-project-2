@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.ticket.xml.Ticket;
 import edu.ncsu.csc216.tracker.ticket.TrackedTicket;
 
 public class TrackedTicketListTest {
@@ -23,15 +24,5 @@ public class TrackedTicketListTest {
 		assertEquals("ndboard", tList.getTrackedTickets().get(0).getNotes().get(0).getNoteAuthor());
 		assertEquals("apple", tList.getTrackedTickets().get(0).getNotes().get(0).getNoteText());
 	}
-	
-	@Test
-	public void testAddXMLTicket() {
-		
-	}
-	
-	@Test
-	public void testGetTicketsByOwner() {
-		TicketTrackerModel ttm = TicketTrackerModel.getInstance();
-		
-	}
+
 }
