@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import edu.ncsu.csc216.ticket.xml.TicketIOException;
+import edu.ncsu.csc216.tracker.command.Command;
+import edu.ncsu.csc216.tracker.command.Command.CommandValue;
+import edu.ncsu.csc216.tracker.command.Command.Flag;
 import edu.ncsu.csc216.tracker.ticket.TrackedTicket;
 
 public class TicketTrackerModelTest {
@@ -85,5 +88,66 @@ public class TicketTrackerModelTest {
 		assertEquals(2, arr3.length);
 	}
 	
+	@Test
+	public void testGetTicketsByID() {
+		TicketTrackerModel ttm = TicketTrackerModel.getInstance();
+		ttm.createNewTicketList();
+		
+		ttm.addTicketToList("title", "submitter", "note");
+		ttm.addTicketToList("title", "submitter1", "note");
+		ttm.addTicketToList("title", "submitter2", "note");
+		
+		TrackedTicket t1 = ttm.getTicketById(1);
+		TrackedTicket t2 = ttm.getTicketById(2);
+		TrackedTicket t3 = ttm.getTicketById(3);
+
+		assertEquals("submitter", t1.getSubmitter());
+		assertEquals("submitter1", t2.getSubmitter());
+		assertEquals("submitter2", t3.getSubmitter());
+
+	}
+	
+	@Test
+	public void testDeleteTicketById() {
+		TicketTrackerModel ttm = TicketTrackerModel.getInstance();
+		ttm.createNewTicketList();
+		
+		ttm.addTicketToList("title", "submitter", "note");
+		ttm.addTicketToList("title", "submitter1", "note");
+		ttm.addTicketToList("title", "submitter2", "note");
+		
+		ttm.deleteTicketById(1);
+		assertNull(ttm.getTicketById(1));
+		ttm.deleteTicketById(2);
+		assertNull(ttm.getTicketById(2));
+		ttm.deleteTicketById(3);
+		assertNull(ttm.getTicketById(3));
+	}
+	
+	@Test
+	public void testGetTicketByOwnerAsArray() {
+		TicketTrackerModel ttm = TicketTrackerModel.getInstance();
+		ttm.createNewTicketList();
+		
+		ttm.addTicketToList("title1", "submitter", "note");
+		ttm.addTicketToList("title2", "submitter1", "note");
+		ttm.addTicketToList("title3", "submitter2", "note");
+		
+		TrackedTicket t1 = ttm.getTicketById(1);
+		TrackedTicket t2 = ttm.getTicketById(2);
+		TrackedTicket t3 = ttm.getTicketById(3);
+		
+		Command n2a = new Command(CommandValue.POSSESSION, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
+		t1.update(n2a);
+		t2.update(n2a);
+		t3.update(n2a);
+		
+		Object[][] objArray = ttm.getTicketListByOwnerAsArray("ndboard");
+
+		assertEquals("title1", objArray[0][2]);
+		assertEquals("title2", objArray[1][2]);
+		assertEquals("title3", objArray[2][2]);
+
+	}
 
 }
