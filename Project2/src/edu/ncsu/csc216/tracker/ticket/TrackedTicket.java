@@ -356,7 +356,7 @@ public class TrackedTicket {
 		 * @throws UnsupportedOperationException if the {@link CommandValue} is not a valid action
 		 * for the given state.
 		 */
-		public void updateState(Command c) {
+		public void updateState(Command c) throws UnsupportedOperationException {
 			if (c.getCommand() == CommandValue.POSSESSION) {
 				
 				setState(ASSIGNED_NAME);
@@ -401,7 +401,7 @@ public class TrackedTicket {
 		 * @throws UnsupportedOperationException if the {@link CommandValue} is not a valid action
 		 * for the given state.
 		 */
-		public void updateState(Command c) {
+		public void updateState(Command c) throws UnsupportedOperationException {
 			if (c.command == CommandValue.ACCEPTED) {
 				setState(WORKING_NAME);
 				notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
@@ -456,7 +456,7 @@ public class TrackedTicket {
 		 * @throws UnsupportedOperationException if the {@link CommandValue} is not a valid action
 		 * for the given state.
 		 */
-		public void updateState(Command c) {
+		public void updateState(Command c) throws UnsupportedOperationException {
 			if (c.command == CommandValue.PROGRESS) {
 				
 				if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
@@ -554,7 +554,7 @@ public class TrackedTicket {
 		 * @throws UnsupportedOperationException if the {@link CommandValue} is not a valid action
 		 * for the given state.
 		 */
-		public void updateState(Command c) {
+		public void updateState(Command c) throws UnsupportedOperationException {
 			if (c.command == CommandValue.FEEDBACK) {
 				
 				if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
@@ -606,7 +606,7 @@ public class TrackedTicket {
 		 * @throws UnsupportedOperationException if the {@link CommandValue} is not a valid action
 		 * for the given state.
 		 */
-		public void updateState(Command c) {
+		public void updateState(Command c) throws UnsupportedOperationException {
 			if (c.command == CommandValue.ACCEPTED) {
 				
 				if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {

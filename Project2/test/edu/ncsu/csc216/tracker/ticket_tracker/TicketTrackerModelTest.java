@@ -35,7 +35,7 @@ public class TicketTrackerModelTest {
 
 		//try to load from valid file
 		try {
-			ttm.loadTicketsFromFile("/test-files/ticket1.xml");
+			ttm.loadTicketsFromFile("test-files/ticket1.xml");
 			assertEquals(1,ttm.getTicketListAsArray().length);
 		} catch (IllegalArgumentException e) {
 			fail();

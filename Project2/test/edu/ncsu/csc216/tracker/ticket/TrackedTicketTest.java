@@ -97,7 +97,7 @@ public class TrackedTicketTest {
 	}
 	
 	@Test
-	public void testNewStateTransition() {
+	public void testStateTransition() {
 		
 		//create new ticket and test for NewState
 		TrackedTicket tNew = new TrackedTicket("testTicket", "ndboard", "PLZ WORK");
