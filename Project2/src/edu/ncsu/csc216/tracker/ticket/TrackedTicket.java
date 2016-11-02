@@ -354,6 +354,7 @@ public class TrackedTicket {
 			if (c.getCommand() == CommandValue.POSSESSION) {
 				
 				setState(ASSIGNED_NAME);
+				owner = c.getOwner();
 				notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
 			}
 			else {
