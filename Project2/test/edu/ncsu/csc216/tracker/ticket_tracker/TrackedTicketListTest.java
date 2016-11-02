@@ -4,9 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import edu.ncsu.csc216.ticket.xml.Ticket;
-import edu.ncsu.csc216.tracker.ticket.TrackedTicket;
-
 public class TrackedTicketListTest {
 
 	@Test

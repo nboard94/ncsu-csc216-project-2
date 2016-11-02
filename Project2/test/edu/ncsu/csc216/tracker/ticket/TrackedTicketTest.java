@@ -99,11 +99,6 @@ public class TrackedTicketTest {
 	}
 	
 	@Test
-	public void testGetFlagString() {
-		
-	}
-	
-	@Test
 	public void testStateTransition() {
 		
 		//create new ticket and test for NewState

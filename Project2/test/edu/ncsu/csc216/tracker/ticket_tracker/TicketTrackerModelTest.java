@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import edu.ncsu.csc216.ticket.xml.TicketIOException;
 import edu.ncsu.csc216.tracker.command.Command;
 import edu.ncsu.csc216.tracker.command.Command.CommandValue;
 import edu.ncsu.csc216.tracker.command.Command.Flag;
@@ -28,7 +27,7 @@ public class TicketTrackerModelTest {
 			ttm.saveTicketsToFile("test-files/outputTest.xml");
 			
 		} catch (IllegalArgumentException e) {
-			
+			assertEquals(0, ttm.getTicketListAsArray().length);
 		}
 		
 		assertEquals(0, ttm.getTicketListAsArray().length);

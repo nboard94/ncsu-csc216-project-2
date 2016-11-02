@@ -522,7 +522,7 @@ public class TrackedTicket {
 			if (c.command == CommandValue.FEEDBACK) {
 				
 				notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-				setState(WORKING_NAME);;
+				setState(WORKING_NAME);
 			}
 			else {
 				throw new UnsupportedOperationException();

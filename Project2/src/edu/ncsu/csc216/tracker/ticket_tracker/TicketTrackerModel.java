@@ -1,7 +1,5 @@
 package edu.ncsu.csc216.tracker.ticket_tracker;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.ncsu.csc216.ticket.xml.Ticket;
