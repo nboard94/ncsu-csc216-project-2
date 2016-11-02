@@ -50,34 +50,63 @@ public class TrackedTicketTest {
 	
 	@Test
 	public void testStatePattern() {
-		//Command(CommandValue newCommand, String newOwner, Flag newFlag, String newNote, String newNoteAuthor)
 		
 		//create new ticket and test for NewState
-		TrackedTicket t1 = new TrackedTicket("testTicket", "ndboard", "PLZ WORK");
-		assertEquals("new", t1.getStateName());
+		TrackedTicket tNew = new TrackedTicket("testTicket", "ndboard", "PLZ WORK");
+		assertEquals("new", tNew.getStateName());
 		
 		//test transition from NewState to AssignedState
-		TrackedTicket t2 = t1;
-		Command c21 = new Command(CommandValue.POSSESSION, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
+		TrackedTicket tAss = tNew;
+		Command assVal = new Command(CommandValue.POSSESSION, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
 		try {
-			t2.update(c21);
-			assertEquals("assigned", t2.getStateName());
-
+			tAss.update(assVal);
+			assertEquals("assigned", tAss.getStateName());
 		} catch (UnsupportedOperationException e) {
 			fail();
+		}
+		
+		//test invalid transition from NewState
+		TrackedTicket tAss2 = tNew;
+		Command assInval = new Command(CommandValue.CLOSED, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
+		try {
+			tAss2.update(assInval);
+			fail();
+		} catch (UnsupportedOperationException e) {
+			assertEquals("new", tAss2.getStateName());
 		}
 
 		//test transition from AssignedState to WorkingState
-		Command c31 = new Command(CommandValue.ACCEPTED, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
+		TrackedTicket tWork = tAss;
+		Command workVal = new Command(CommandValue.ACCEPTED, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
 		try {
-			t1.update(c31);
-			assertEquals("working", t1.getStateName());
-
+			tWork.update(workVal);
+			assertEquals("working", tWork.getStateName());
 		} catch (UnsupportedOperationException e) {
 			fail();
 		}
-		//test transition from AssignedState to ClosedState
 		
+		//test transition from AssignedState to ClosedState
+		TrackedTicket tWork2 = tAss;
+		Command workVal2 = new Command(CommandValue.CLOSED, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
+		try {
+			tWork2.update(workVal2);
+			assertEquals("closed", tWork2.getStateName());
+		} catch (UnsupportedOperationException e) {
+			fail();
+		}
+		
+		//test invalid transition from AssignedState
+		TrackedTicket tWork3 = tAss;
+		Command workInval = new Command(CommandValue.FEEDBACK, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
+		try {
+			tWork3.update(workInval);
+			fail();
+		} catch (UnsupportedOperationException e) {
+			assertEquals("assigned", tWork3.getStateName());
+		}
+		
+		
+
 		//test transition from WorkingState to WorkingState
 		//test transition from WorkingState to FeedbackState
 		//test transition from WorkingState to ClosedState

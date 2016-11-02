@@ -110,19 +110,19 @@ public class TrackedTicket {
 	 */
 	public String getStateName() {
 		if (this.state == newState) {
-			return NEW_NAME;
+			return newState.getStateName();
 		}
 		else if (this.state == assignedState) {
-			return ASSIGNED_NAME;
+			return assignedState.getStateName();
 		}
 		else if (this.state == workingState) {
-			return WORKING_NAME;
+			return workingState.getStateName();
 		}
 		else if (this.state == feedbackState) {
-			return FEEDBACK_NAME;
+			return feedbackState.getStateName();
 		}
 		else if (this.state == closedState) {
-			return CLOSED_NAME;
+			return closedState.getStateName();
 		}
 		else {
 			return null;
@@ -215,7 +215,7 @@ public class TrackedTicket {
 	public void update(Command c) throws UnsupportedOperationException {
 		try {
 			if (this.getStateName().equals(NEW_NAME)) {
-				this.newState.updateState(c);
+				newState.updateState(c);
 			}
 			else if (this.getStateName().equals(ASSIGNED_NAME)) {
 				assignedState.updateState(c);
@@ -229,7 +229,6 @@ public class TrackedTicket {
 			else if (this.getStateName().equals(CLOSED_NAME)) {
 				closedState.updateState(c);
 			}
-			
 		} catch (UnsupportedOperationException e){
 			throw new UnsupportedOperationException();
 		}
