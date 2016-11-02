@@ -98,7 +98,7 @@ public class CommandTest {
 			assertEquals(Flag.DUPLICATE, c1.getFlag());
 		}
 	}
-	
+	 
 	@Test
 	public void testEnum() {
 		assertEquals("ACCEPTED", Command.CommandValue.valueOf("ACCEPTED").toString());
