@@ -149,5 +149,19 @@ public class TicketTrackerModelTest {
 		assertEquals("title3", objArray[2][2]);
 
 	}
+	
+	@Test
+	public void testExecuteCommand() {
+		TicketTrackerModel ttm = TicketTrackerModel.getInstance();
+		ttm.createNewTicketList();
+		ttm.addTicketToList("title1", "submitter", "note");
+		TrackedTicket t1 = ttm.getTicketById(1);
+		Command n2a = new Command(CommandValue.POSSESSION, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
+
+		ttm.executeCommand(1, n2a);
+		assertEquals("assigned", t1.getStateName());
+
+
+	}
 
 }

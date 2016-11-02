@@ -117,29 +117,17 @@ public class TicketTrackerModel {
 	 */
 	public Object[][] getTicketListByOwnerAsArray(String owner) {
 		
-		int count = 0;
-		for (int i = 0; i < trackedTicketList.getTrackedTickets().size(); i++) {
-			if (trackedTicketList.getTrackedTickets().get(i).getOwner().equals(owner)) {
-				count++;
-			}
+		List<TrackedTicket> list = trackedTicketList.getTicketsByOwner(owner);
+		
+		Object[][] objArray= new Object[list.size()][3];
+		
+		for (int i = 0; i < list.size(); i++) {
+			objArray[i][0] = list.get(i).getTicketId();
+			objArray[i][1] = list.get(i).getStateName();
+			objArray[i][2] = list.get(i).getTitle();
 		}
 		
-		Object[][] ticketList = new Object[trackedTicketList.tickets.size()][3];
-		
-		int add = 0;
-		for (int i = 0; i < trackedTicketList.tickets.size(); i++) {
-			if (trackedTicketList.tickets.get(i).getOwner() == null) {
-				throw new IllegalArgumentException();
-			}
-			
-			ticketList[add][0] = trackedTicketList.getTicketsByOwner(owner).get(i).getTicketId();
-			ticketList[add][1] = trackedTicketList.getTicketsByOwner(owner).get(i).getStateName();
-			ticketList[add][2] = trackedTicketList.getTicketsByOwner(owner).get(i).getTitle();
-	
-			add++;
-		}
-		
-		return ticketList;
+		return objArray;
 	}
 	
 	/**
