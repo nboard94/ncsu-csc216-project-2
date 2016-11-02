@@ -87,6 +87,8 @@ public class TrackedTicket {
 		this(t.getTitle(), t.getSubmitter(), "");
 		this.setState(t.getState());
 		this.setFlag(t.getFlag());
+		Note n = new Note(t.getNoteList().getNotes().get(0).getNoteAuthor(), t.getNoteList().getNotes().get(0).getNoteText());
+		this.notes.add(n);
 	} 
 	
 	/**

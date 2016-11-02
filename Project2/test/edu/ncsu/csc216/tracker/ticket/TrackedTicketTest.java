@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.ticket.xml.NoteItem;
+import edu.ncsu.csc216.ticket.xml.NoteList;
 import edu.ncsu.csc216.ticket.xml.Ticket;
 import edu.ncsu.csc216.tracker.command.Command;
 import edu.ncsu.csc216.tracker.command.Command.CommandValue;
@@ -39,6 +41,38 @@ public class TrackedTicketTest {
 		Ticket t = new Ticket();
 		t.setTitle("Ticket1");
 		t.setSubmitter("ndboard");
+		
+		NoteItem li = new NoteItem();
+		li.setNoteAuthor("ndboard");
+		li.setNoteText("testtest");
+		NoteItem ni = new NoteItem();
+		ni.setNoteAuthor("ndboard");
+		ni.setNoteText("testtest");
+		NoteList nl = new NoteList();
+		nl.getNotes().add(ni);
+		t.setNoteList(nl);
+
+		TrackedTicket t1 = new TrackedTicket(t);
+		
+		assertEquals("Ticket1", t1.getTitle());
+		assertEquals("ndboard", t1.getSubmitter());
+		assertEquals("ndboard", t1.getNotes().get(0).getNoteAuthor());
+		assertEquals("testtest", t1.getNotes().get(0).getNoteText());
+	}
+	
+	@Test
+	public void getXMLTicket() {
+		TrackedTicket t1 = new TrackedTicket("testTicket", "ndboard", "PLZ WORK");
+
+		Ticket t = t1.getXMLTicket();
+		
+		assertEquals("testTicket", t.getTitle());
+		assertEquals("ndboard", t.getSubmitter());
+		assertEquals("ndboard", t.getNoteList().getNotes().get(0).getNoteAuthor());
+		assertEquals("PLZ WORK", t.getNoteList().getNotes().get(0).getNoteText());
+		
+		
+		
 	}
 	
 	@Test
@@ -49,7 +83,7 @@ public class TrackedTicketTest {
 	}
 	
 	@Test
-	public void testStatePattern() {
+	public void testNewStateTransition() {
 		
 		//create new ticket and test for NewState
 		TrackedTicket tNew = new TrackedTicket("testTicket", "ndboard", "PLZ WORK");
@@ -105,8 +139,6 @@ public class TrackedTicketTest {
 			assertEquals("assigned", tWork3.getStateName());
 		}
 		
-		
-
 		//test transition from WorkingState to WorkingState
 		//test transition from WorkingState to FeedbackState
 		//test transition from WorkingState to ClosedState
