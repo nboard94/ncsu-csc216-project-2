@@ -130,7 +130,7 @@ public class TrackedTicketTest {
 		Command a2w = new Command(CommandValue.ACCEPTED, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
 		try {
 			tAss.update(a2w);
-			assertEquals("working", tAss.getStateName());
+			assertEquals("Working", tAss.getStateName());
 		} catch (UnsupportedOperationException e) {
 			fail();
 		}
@@ -141,7 +141,7 @@ public class TrackedTicketTest {
 		Command a2c = new Command(CommandValue.CLOSED, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
 		try {
 			tAss2.update(a2c);
-			assertEquals("closed", tAss2.getStateName());
+			assertEquals("Closed", tAss2.getStateName());
 		} catch (UnsupportedOperationException e) {
 			fail();
 		}
@@ -164,7 +164,7 @@ public class TrackedTicketTest {
 		Command w2w = new Command(CommandValue.PROGRESS, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
 		try {
 			tWork.update(w2w);
-			assertEquals("working", tWork.getStateName());
+			assertEquals("Working", tWork.getStateName());
 		} catch (UnsupportedOperationException e) {
 			fail();
 		}
@@ -176,7 +176,7 @@ public class TrackedTicketTest {
 		Command w2f = new Command(CommandValue.FEEDBACK, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
 		try {
 			tWork2.update(w2f);
-			assertEquals("feedback", tWork2.getStateName());
+			assertEquals("Feedback", tWork2.getStateName());
 		} catch (UnsupportedOperationException e) {
 			fail();
 		}
@@ -188,7 +188,7 @@ public class TrackedTicketTest {
 		Command w2c = new Command(CommandValue.CLOSED, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
 		try {
 			tWork3.update(w2c);
-			assertEquals("closed", tWork3.getStateName());
+			assertEquals("Closed", tWork3.getStateName());
 		} catch (UnsupportedOperationException e) {
 			fail();
 		}
@@ -200,7 +200,7 @@ public class TrackedTicketTest {
 		Command w2a = new Command(CommandValue.POSSESSION, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
 		try {
 			tWork4.update(w2a);
-			assertEquals("assigned", tWork4.getStateName());
+			assertEquals("Assigned", tWork4.getStateName());
 		} catch (UnsupportedOperationException e) {
 			fail();
 		}
@@ -213,7 +213,7 @@ public class TrackedTicketTest {
 		Command f2w = new Command(CommandValue.FEEDBACK, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
 		try {
 			tFeed.update(f2w);
-			assertEquals("working", tFeed.getStateName());
+			assertEquals("Working", tFeed.getStateName());
 		} catch (UnsupportedOperationException e) {
 			fail();
 		}
@@ -225,7 +225,7 @@ public class TrackedTicketTest {
 		Command c2w = new Command(CommandValue.PROGRESS, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
 		try {
 			tClose.update(c2w);
-			assertEquals("working", tClose.getStateName());
+			assertEquals("Working", tClose.getStateName());
 		} catch (UnsupportedOperationException e) {
 			fail();
 		}
@@ -237,7 +237,7 @@ public class TrackedTicketTest {
 		Command c2a = new Command(CommandValue.POSSESSION, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
 		try {
 			tClose2.update(c2a);
-			assertEquals("assigned", tClose2.getStateName());
+			assertEquals("Assigned", tClose2.getStateName());
 		} catch (UnsupportedOperationException e) {
 			fail();
 		}
