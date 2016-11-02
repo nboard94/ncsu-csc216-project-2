@@ -33,7 +33,7 @@ public class TrackedTicketTest {
 		assertEquals(2, t2.getTicketId());
 		assertEquals(3, t3.getTicketId());
 		
-		assertEquals("new", t1.getStateName());
+		assertEquals("New", t1.getStateName());
 	}
 	
 	@Test
@@ -94,7 +94,7 @@ public class TrackedTicketTest {
 	@Test
 	public void testGetStateName() {
 		TrackedTicket t1 = new TrackedTicket("testTicket", "ndboard", "PLZ WORK");
-		assertEquals("new", t1.getStateName());
+		assertEquals("New", t1.getStateName());
 		
 	}
 	
@@ -103,7 +103,7 @@ public class TrackedTicketTest {
 		
 		//create new ticket and test for NewState
 		TrackedTicket tNew = new TrackedTicket("testTicket", "ndboard", "commentK");
-		assertEquals("new", tNew.getStateName());
+		assertEquals("New", tNew.getStateName());
 		
 		//test transition from NewState to AssignedState
 		Command n2a = new Command(CommandValue.POSSESSION, "ndboard", Flag.DUPLICATE, "Note", "NoteText");

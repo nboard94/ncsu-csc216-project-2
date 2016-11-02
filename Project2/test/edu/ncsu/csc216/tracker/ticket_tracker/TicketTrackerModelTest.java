@@ -158,7 +158,7 @@ public class TicketTrackerModelTest {
 		Command n2a = new Command(CommandValue.POSSESSION, "ndboard", Flag.DUPLICATE, "Note", "NoteText");
 
 		ttm.executeCommand(1, n2a);
-		assertEquals("assigned", t1.getStateName());
+		assertEquals("Assigned", t1.getStateName());
 
 
 	}
