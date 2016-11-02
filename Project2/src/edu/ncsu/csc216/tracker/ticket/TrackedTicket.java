@@ -84,11 +84,21 @@ public class TrackedTicket {
 	 * @param t The Ticket object used to create a TrackedTicket.
 	 */
 	public TrackedTicket(Ticket t) {
-		this(t.getTitle(), t.getSubmitter(), "");
-		this.setState(t.getState());
-		this.setFlag(t.getFlag());
+		this.title = t.getTitle();
+		this.submitter = t.getSubmitter();
 		Note n = new Note(t.getNoteList().getNotes().get(0).getNoteAuthor(), t.getNoteList().getNotes().get(0).getNoteText());
 		this.notes.add(n);
+		
+		if (t.getFlag() != null) {
+			this.setFlag(t.getFlag());
+		}
+		
+		if (t.getState() != null) {
+			this.setState(t.getState());
+		}
+		else {
+			this.setState(NEW_NAME);
+		}
 	} 
 	
 	/**
@@ -215,25 +225,7 @@ public class TrackedTicket {
 	 * @throws UnsupportedOperationException Thrown is UnsupportedOperationException is caught.
 	 */
 	public void update(Command c) throws UnsupportedOperationException {
-		try {
-			if (this.getStateName().equals(NEW_NAME)) {
-				newState.updateState(c);
-			}
-			else if (this.getStateName().equals(ASSIGNED_NAME)) {
-				assignedState.updateState(c);
-			}
-			else if (this.getStateName().equals(WORKING_NAME)) {
-				workingState.updateState(c);
-			}
-			else if (this.getStateName().equals(FEEDBACK_NAME)) {
-				workingState.updateState(c);
-			}
-			else if (this.getStateName().equals(CLOSED_NAME)) {
-				closedState.updateState(c);
-			}
-		} catch (UnsupportedOperationException e){
-			throw new UnsupportedOperationException();
-		}
+		state.updateState(c);
 	}
 	
 	/**
@@ -607,7 +599,7 @@ public class TrackedTicket {
 		 * for the given state.
 		 */
 		public void updateState(Command c) throws UnsupportedOperationException {
-			if (c.command == CommandValue.ACCEPTED) {
+			if (c.command == CommandValue.PROGRESS) {
 				
 				if (c.getNoteAuthor() == null || c.getNoteAuthor() == "") {
 					throw new IllegalArgumentException("Invalid note author id.");
