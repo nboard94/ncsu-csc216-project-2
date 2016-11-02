@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.tracker.command.Command.Flag;
+
 /**
  * Class to test the Command class.
  * @author NBoar
@@ -46,14 +48,14 @@ public class CommandTest {
 			c1 = new Command(null, "ndboard", Command.Flag.DUPLICATE, "note", "ndboard");
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertNull(c1);
+			assertEquals(Flag.DUPLICATE, c1.getFlag());
 		}
 		
 		try {
 			c1 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, "note", null);
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertNull(c1);
+			assertEquals(Flag.DUPLICATE, c1.getFlag());
 		}
 		 
 		
@@ -61,39 +63,39 @@ public class CommandTest {
 			c1 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, "note", "");
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertNull(c1);
+			assertEquals(Flag.DUPLICATE, c1.getFlag());
 		}
 		
 		try {
 			c1 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, null, "ndboard");
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertNull(c1);
+			assertEquals(Flag.DUPLICATE, c1.getFlag());
 		}
 		
 		try {
 			c1 = new Command(Command.CommandValue.ACCEPTED, "ndboard", Command.Flag.DUPLICATE, "", "ndboard");
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertNull(c1);
+			assertEquals(Flag.DUPLICATE, c1.getFlag());
 		}
 		
 		try {
 			c1 = new Command(Command.CommandValue.POSSESSION, null, Command.Flag.DUPLICATE, "note", "ndboard");
 		} catch (IllegalArgumentException e) {
-			assertNull(c1);
+			assertEquals(Flag.DUPLICATE, c1.getFlag());
 		}
 		
 		try {
 			c1 = new Command(Command.CommandValue.POSSESSION, "", Command.Flag.DUPLICATE, "note", "ndboard");
 		} catch (IllegalArgumentException e) {
-			assertNull(c1);
+			assertEquals(Flag.DUPLICATE, c1.getFlag());
 		}
 		
 		try {
 			c1 = new Command(Command.CommandValue.CLOSED, "ndboard", null, "note", "ndboard");
 		} catch (IllegalArgumentException e) {
-			assertNull(c1);
+			assertEquals(Flag.DUPLICATE, c1.getFlag());
 		}
 	}
 	

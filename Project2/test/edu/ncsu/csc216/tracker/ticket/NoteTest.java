@@ -30,28 +30,28 @@ public class NoteTest {
 			n = new Note(null, "This is a note.");
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertNull(n);
+			assertEquals("ndboard", n.getNoteAuthor());
 		}
 		
 		try {
 			n = new Note("", "This is a note.");
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertNull(n);
+			assertEquals("ndboard", n.getNoteAuthor());
 		}
 		
 		try {
 			n = new Note("ndboard", null);
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertNull(n);
+			assertEquals("ndboard", n.getNoteAuthor());
 		}
 		
 		try {
 			n = new Note("ndboard", "");
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertNull(n);
+			assertEquals("ndboard", n.getNoteAuthor());
 		}
 		
 	}
