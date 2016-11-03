@@ -109,7 +109,6 @@ public class TrackedTicket {
 			this.setState(NEW_NAME);
 		}
 		
-		incrementCounter();
 	} 
 	
 	/**
