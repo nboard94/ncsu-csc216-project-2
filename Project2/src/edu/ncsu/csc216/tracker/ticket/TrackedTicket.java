@@ -91,8 +91,16 @@ public class TrackedTicket {
 		this.ticketId = t.getId();
 		this.title = t.getTitle();
 		this.submitter = t.getSubmitter();
-		Note n = new Note(t.getNoteList().getNotes().get(0).getNoteAuthor(), t.getNoteList().getNotes().get(0).getNoteText());
-		this.notes.add(n);
+		
+		
+		Note curNote;
+		
+		for (int i = 0; i < t.getNoteList().getNotes().size(); i++) {
+			curNote = new Note(t.getNoteList().getNotes().get(i).getNoteAuthor(), t.getNoteList().getNotes().get(i).getNoteText());
+			this.notes.add(curNote);
+
+		}
+
 		
 		if (t.getOwner() != null) {
 			owner = t.getOwner();
