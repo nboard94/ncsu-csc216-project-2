@@ -487,14 +487,10 @@ public class TrackedTicket {
 				}
 			}
 			else if (c.command == CommandValue.POSSESSION) {
-				if (c.getOwner() == null || c.getOwner() == "") {
-					throw new IllegalArgumentException("Invalid owner id.");
-				}
-				else {
-					owner = c.getOwner();
-					setState(ASSIGNED_NAME);
-					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-				}
+				owner = c.getOwner();
+				setState(ASSIGNED_NAME);
+				notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
+				
 			}
 			else {
 				throw new UnsupportedOperationException();
