@@ -28,8 +28,8 @@ public class CommandTest {
 		
 		//test string based fields
 		assertEquals("ndboard", c1.getOwner());
-		assertEquals("note", c1.getNoteText());
-		assertEquals("ndboard", c1.getNoteAuthor());
+		assertEquals("ndboard", c1.getNoteText());
+		assertEquals("note", c1.getNoteAuthor());
 		
 		//test flag field
 		assertEquals(Command.Flag.DUPLICATE, c1.getFlag());

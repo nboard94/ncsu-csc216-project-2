@@ -52,7 +52,7 @@ public class Command {
 	 * @throws IllegalArgumentException If the newCommand is POSSESSION and the newOwner is null or empty.
 	 * @throws IllegalArgumentException If the newCommand is CLOSED and newFlag is null.
 	 */
-	public Command(CommandValue newCommand, String newOwner, Flag newFlag, String newNote, String newNoteAuthor) throws IllegalArgumentException {
+	public Command(CommandValue newCommand, String newOwner, Flag newFlag, String newNoteAuthor, String newNote) throws IllegalArgumentException {
 		
 		if (newCommand == null) {
 			throw new IllegalArgumentException();
