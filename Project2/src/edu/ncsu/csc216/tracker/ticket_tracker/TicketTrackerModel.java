@@ -44,25 +44,19 @@ public class TicketTrackerModel {
 	 */
 	public void saveTicketsToFile(String outputFile) throws IllegalArgumentException {
 		
-		TrackedTicket currentTrackedTick;
-		Ticket currentTick;
-		TicketList ticksToSave = new TicketList();
+		if (trackedTicketList == null) {
+			throw new IllegalArgumentException();
+		}
 		
-		//TODO
-		//Is this implemented right?
-		//Why Marshal() twice?
+		TicketWriter writer = new TicketWriter(outputFile);
+		Ticket currentTick;
+		
 		try {
-			TicketWriter tickWrite = new TicketWriter(outputFile);
-			
 			for (int i = 0; i < trackedTicketList.getTrackedTickets().size(); i++) {
-				currentTrackedTick = trackedTicketList.getTrackedTickets().get(i);
-				currentTick = currentTrackedTick.getXMLTicket();
-				ticksToSave.getTickets().add(currentTick);
-				tickWrite.addItem(currentTick);
-				tickWrite.marshal();
-				tickWrite.marshal();
+				currentTick = trackedTicketList.getTrackedTickets().get(i).getXMLTicket();
+				writer.addItem(currentTick);
+				writer.marshal();
 			}
-			
 		} catch (TicketIOException e) {
 			throw new IllegalArgumentException();
 		}
