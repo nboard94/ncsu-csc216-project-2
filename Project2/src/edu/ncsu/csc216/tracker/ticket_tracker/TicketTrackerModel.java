@@ -4,7 +4,6 @@ import java.util.List;
 
 import edu.ncsu.csc216.ticket.xml.Ticket;
 import edu.ncsu.csc216.ticket.xml.TicketIOException;
-import edu.ncsu.csc216.ticket.xml.TicketList;
 import edu.ncsu.csc216.ticket.xml.TicketReader;
 import edu.ncsu.csc216.ticket.xml.TicketWriter;
 import edu.ncsu.csc216.tracker.command.Command;
