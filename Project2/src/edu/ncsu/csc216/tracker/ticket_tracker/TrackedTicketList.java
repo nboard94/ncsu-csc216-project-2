@@ -75,10 +75,7 @@ public class TrackedTicketList {
 		ArrayList<TrackedTicket> ticketsByOwner = new ArrayList<TrackedTicket>();
 		
 		for (int i = 0; i < tickets.size(); i++) {
-			if (tickets.get(i).getOwner() == null || tickets.get(i).getOwner() == "") {
-				throw new IllegalArgumentException();
-			}
-			else if (tickets.get(i).getOwner() == owner) {
+			if (tickets.get(i).getOwner().equals(owner)) {
 				ticketsByOwner.add(tickets.get(i));
 			}
 		}
@@ -99,10 +96,7 @@ public class TrackedTicketList {
 		ArrayList<TrackedTicket> ticketsBySubmitter = new ArrayList<TrackedTicket>();
 		
 		for (int i = 0; i < tickets.size(); i++) {
-			if (tickets.get(i).getSubmitter() == null || tickets.get(i).getSubmitter() == "") {
-				throw new IllegalArgumentException();
-			}
-			else if (tickets.get(i).getSubmitter().equals(submitter)) {
+			if (tickets.get(i).getSubmitter().equals(submitter)) {
 				ticketsBySubmitter.add(tickets.get(i));
 			}
 		}
