@@ -592,6 +592,7 @@ public class TrackedTicket {
 				}
 				else {
 					owner = c.getOwner();
+					flag = null;
 					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
 					setState(ASSIGNED_NAME);
 				}
