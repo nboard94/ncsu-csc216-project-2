@@ -67,8 +67,13 @@ public class TrackedTicket {
 	 * @param newNote The initial note of the new TrackedTicket.
 	 */
 	public TrackedTicket(String newTitle, String newSubmitter, String newNote) {
+		if (title == null || title.equals("")) {
+			throw new IllegalArgumentException();
+		}
+		else {
+			title = newTitle;
+		}
 		ticketId = counter;
-		title = newTitle;
 		submitter = newSubmitter;
 
 		this.setState(NEW_NAME);
@@ -261,7 +266,12 @@ public class TrackedTicket {
 	 * @param newCount The integer you want to set the counter to.
 	 */
 	public static void setCounter(int newCount) {
-		counter = newCount;
+		if (newCount <= 0) {
+			throw new IllegalArgumentException();
+		}
+		else {
+			counter = newCount;
+		}
 	}
 	
 	/**
