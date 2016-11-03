@@ -69,6 +69,9 @@ public class TicketTrackerModel {
 	 * @throws IllegalArgumentException If TicketIOException is caught.
 	 */
 	public void loadTicketsFromFile(String inputFile) throws IllegalArgumentException {
+		
+		this.createNewTicketList();
+		
 		try {
 			TicketReader tickRead = new TicketReader(inputFile);
 			trackedTicketList.addXMLTickets(tickRead.getTickets());
