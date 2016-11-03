@@ -112,7 +112,11 @@ public class TicketTrackerModel {
 	 * @param submitter The submitter of the tickets you want to view.
 	 * @return ticketList A 2D array with the TrackedTicket's Id, state, and title.
 	 */
-	public Object[][] getTicketListByOwnerAsArray(String owner) {
+	public Object[][] getTicketListByOwnerAsArray(String owner) throws IllegalArgumentException {
+		if (owner == null) {
+			throw new IllegalArgumentException();
+		}
+		
 		
 		List<TrackedTicket> list = trackedTicketList.getTicketsByOwner(owner);
 		
@@ -132,7 +136,10 @@ public class TicketTrackerModel {
 	 * @param submitter The submitter of the tickets you want to view.
 	 * @return ticketList A 2D array with the TrackedTicket's Id, state, and title.
 	 */
-	public Object[][] getTicketListBySubmitterAsArray(String submitter) {
+	public Object[][] getTicketListBySubmitterAsArray(String submitter) throws IllegalArgumentException {
+		if (submitter == null) {
+			throw new IllegalArgumentException();
+		}
 		
 		List<TrackedTicket> list = trackedTicketList.getTicketsBySubmitter(submitter);
 		
