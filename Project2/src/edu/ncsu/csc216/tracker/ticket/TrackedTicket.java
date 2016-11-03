@@ -579,6 +579,7 @@ public class TrackedTicket {
 				
 				notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
 				setState(WORKING_NAME);
+				flag = null;
 			}
 			else if (c.command == CommandValue.POSSESSION) {
 				
