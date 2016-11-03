@@ -300,7 +300,7 @@ public class TrackedTicket {
 			return "Duplicate";
 		}
 		else if (this.flag == Flag.INAPPROPRIATE) {
-			return "Innappropriate";
+			return "Inappropriate";
 		}
 		else if (this.flag == Flag.RESOLVED) {
 			return "Resolved";
