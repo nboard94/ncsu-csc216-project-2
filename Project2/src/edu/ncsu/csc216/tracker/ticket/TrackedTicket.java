@@ -94,6 +94,10 @@ public class TrackedTicket {
 		Note n = new Note(t.getNoteList().getNotes().get(0).getNoteAuthor(), t.getNoteList().getNotes().get(0).getNoteText());
 		this.notes.add(n);
 		
+		if (t.getOwner() != null) {
+			owner = t.getOwner();
+		}
+		
 		if (t.getFlag() != null) {
 			this.setFlag(t.getFlag().toLowerCase());
 		}
