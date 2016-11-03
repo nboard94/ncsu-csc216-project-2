@@ -19,7 +19,7 @@ public class TicketTrackerModel {
 	/** The only instance of the TicketTrackerModel, following the Singleton pattern. */
 	public static TicketTrackerModel tickTrack = new TicketTrackerModel();
 	/** The current TrackedTicketList.*/
-	public static TrackedTicketList trackedTicketList = new TrackedTicketList();
+	public TrackedTicketList trackedTicketList = new TrackedTicketList();
 
 	/**
 	 * Private constructor for the TickeTrackerModel to ensure the Singleton pattern.
@@ -33,6 +33,9 @@ public class TicketTrackerModel {
 	 * @return tickTrack The only instance of the TicketTrackerModel.
 	 */
 	public static TicketTrackerModel getInstance() {
+		if (tickTrack == null) {
+			tickTrack = new TicketTrackerModel();
+		}
 		return tickTrack;
 	}
 	
