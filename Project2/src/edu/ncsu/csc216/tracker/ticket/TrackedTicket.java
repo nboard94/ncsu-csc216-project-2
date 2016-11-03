@@ -67,7 +67,7 @@ public class TrackedTicket {
 	 * @param newNote The initial note of the new TrackedTicket.
 	 */
 	public TrackedTicket(String newTitle, String newSubmitter, String newNote) {
-		if (title == null || title.equals("")) {
+		if (newTitle == null || newTitle.equals("")) {
 			throw new IllegalArgumentException();
 		}
 		else {
