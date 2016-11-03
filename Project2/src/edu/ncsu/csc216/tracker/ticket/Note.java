@@ -21,13 +21,13 @@ public class Note {
 	 */
 	public Note(String newAuthor, String newText) throws IllegalArgumentException {
 		
-		if (newAuthor == null || newAuthor == "") {
+		if (newAuthor == null || newAuthor.equals("")) {
 			throw new IllegalArgumentException();
 		} else {
 			this.setNoteAuthor(newAuthor);
 		}
 		
-		if (newText == null || newText == "") {
+		if (newText == null || newText.equals("")) {
 			throw new IllegalArgumentException();
 		} else {
 			this.setNoteText(newText);

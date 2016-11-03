@@ -392,7 +392,7 @@ public class TrackedTicket {
 	 * the TicketState interface.
 	 * @author NBoar
 	 */
-	class AssignedState implements TicketState{
+	class AssignedState implements TicketState {
 	
 		/**
 		 * Constructor for the AssignedState object.
@@ -582,7 +582,7 @@ public class TrackedTicket {
 			}
 			else if (c.command == CommandValue.POSSESSION) {
 				
-				if (c.getOwner() == null || c.getOwner() == "") {
+				if (c.getOwner() == null || c.getOwner().equals("")) {
 					throw new IllegalArgumentException("Invalid owner id");
 				}
 				else {

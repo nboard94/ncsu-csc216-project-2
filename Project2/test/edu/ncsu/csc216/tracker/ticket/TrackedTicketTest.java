@@ -12,10 +12,19 @@ import edu.ncsu.csc216.tracker.command.Command.CommandValue;
 import edu.ncsu.csc216.tracker.command.Command.Flag;
 import edu.ncsu.csc216.tracker.ticket_tracker.TicketTrackerModel;
 
+/**
+ * Class that contains testing methods for
+ * the TrackedTicket class.
+ * @author NBoar
+ */
 public class TrackedTicketTest {
 
 	
 	
+	/**
+	 * Tests the TrackedTicket constructor that
+	 * takes in three stings as parameters.
+	 */
 	@Test
 	public void testTrackedTicketStringStringString() {
 		TicketTrackerModel.getInstance().createNewTicketList();
@@ -36,6 +45,10 @@ public class TrackedTicketTest {
 		assertEquals("New", t1.getStateName());
 	}
 	
+	/**
+	 * Tests the TrackedTicket constructor that
+	 * uses a Ticket object as a parameter.
+	 */
 	@Test
 	public void testTrackedTicketTicket() {
 		Ticket t = new Ticket();
@@ -62,6 +75,9 @@ public class TrackedTicketTest {
 		assertEquals("testtest", t1.getNotes().get(0).getNoteText());
 	}
 	
+	/**
+	 * Tests getXMLTicket in TrackedTicket.
+	 */
 	@Test
 	public void testGetXMLTicket() {
 		TrackedTicket t1 = new TrackedTicket("testTicket", "ndboard", "PLZ WORK");
@@ -74,6 +90,9 @@ public class TrackedTicketTest {
 		assertEquals("PLZ WORK", t.getNoteList().getNotes().get(0).getNoteText());	
 	}
 	
+	/**
+	 * Tests getNotesArray in TrackedTicket.
+	 */
 	@Test
 	public void testGetNotesArray() {
 		TrackedTicket t1 = new TrackedTicket("testTicket", "ndboard1", "note1");
@@ -91,6 +110,9 @@ public class TrackedTicketTest {
 
 	}
 	
+	/**
+	 * Tests the getStateName method in TrackedTicket.
+	 */
 	@Test
 	public void testGetStateName() {
 		TrackedTicket t1 = new TrackedTicket("testTicket", "ndboard", "PLZ WORK");
@@ -98,6 +120,11 @@ public class TrackedTicketTest {
 		
 	}
 	
+	/**
+	 * Tests the state pattern in TrackedTicket.
+	 * Creates various tickets and moves them through the
+	 * states using the proper commands.
+	 */
 	@Test
 	public void testStateTransition() {
 		
