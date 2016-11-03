@@ -590,6 +590,9 @@ public class TrackedTicket {
 					setState(ASSIGNED_NAME);
 				}
 			}
+			else {
+				throw new UnsupportedOperationException();
+			}
 			
 
 		}
