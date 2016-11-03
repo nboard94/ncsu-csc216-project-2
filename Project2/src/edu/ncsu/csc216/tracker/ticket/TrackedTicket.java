@@ -88,7 +88,7 @@ public class TrackedTicket {
 	 * @param t The Ticket object used to create a TrackedTicket.
 	 */
 	public TrackedTicket(Ticket t) {
-		this.ticketId = counter;
+		this.ticketId = t.getId();
 		this.title = t.getTitle();
 		this.submitter = t.getSubmitter();
 		Note n = new Note(t.getNoteList().getNotes().get(0).getNoteAuthor(), t.getNoteList().getNotes().get(0).getNoteText());
