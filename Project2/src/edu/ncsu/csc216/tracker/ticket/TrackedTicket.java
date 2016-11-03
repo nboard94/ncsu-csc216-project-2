@@ -95,7 +95,7 @@ public class TrackedTicket {
 		this.notes.add(n);
 		
 		if (t.getFlag() != null) {
-			this.setFlag(t.getFlag());
+			this.setFlag(t.getFlag().toLowerCase());
 		}
 		
 		if (t.getState() != null) {
@@ -183,13 +183,13 @@ public class TrackedTicket {
 	 * @param flagStr The string representation of the Flag enumeration to set flag to.
 	 */
 	private void setFlag(String flagStr) {
-		if (flagStr.equals(Flag.DUPLICATE.toString())) {
+		if (flagStr.equals("Duplicate")) {
 			this.flag = Flag.DUPLICATE;
 		}
-		else if (flagStr.equals(Flag.INAPPROPRIATE.toString())) {
+		else if (flagStr.equals("Inappropriate")) {
 			this.flag = Flag.INAPPROPRIATE;
 		}
-		else if (flagStr.equals(Flag.RESOLVED.toString())) {
+		else if (flagStr.equals("Resolved")) {
 			this.flag = Flag.RESOLVED;
 		}
 	}                                                                                    
@@ -248,7 +248,9 @@ public class TrackedTicket {
 		newTick.setTitle(this.getTitle());
 		newTick.setSubmitter(this.getSubmitter());
 		newTick.setOwner(this.getOwner());
-		newTick.setFlag(this.getFlagString());
+		if (this.getFlag() != null) {
+			newTick.setFlag(this.getFlagString());
+		}
 		newTick.setState(this.getStateName());
 		
 		for (int i = 0; i < this.getNotes().size(); i++) {
@@ -295,13 +297,13 @@ public class TrackedTicket {
 	 */
 	public String getFlagString() {
 		if (this.flag == Flag.DUPLICATE) {
-			return "duplicate";
+			return "Duplicate";
 		}
 		else if (this.flag == Flag.INAPPROPRIATE) {
-			return "innappropriate";
+			return "Innappropriate";
 		}
 		else if (this.flag == Flag.RESOLVED) {
-			return "resolved";
+			return "Resolved";
 		}
 		else {
 			return null;
@@ -476,7 +478,7 @@ public class TrackedTicket {
 				if (c.getFlag() == Flag.DUPLICATE || c.getFlag() == Flag.INAPPROPRIATE || c.getFlag() == Flag.RESOLVED) {
 
 					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
-					setFlag("resolved");
+					flag = c.getFlag();
 					setState(CLOSED_NAME);
 				}
 			}
