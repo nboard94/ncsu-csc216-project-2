@@ -110,7 +110,7 @@ public class TrackedTicket {
 			this.setFlag(t.getFlag());
 		}
 		else {
-			this.setFlag("Resolved");
+			flag = null;
 		}
 		
 		if (t.getState() != null) {
