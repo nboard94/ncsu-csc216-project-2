@@ -591,6 +591,7 @@ public class TrackedTicket {
 					throw new IllegalArgumentException("Invalid owner id");
 				}
 				else {
+					owner = c.getOwner();
 					notes.add(new Note(c.getNoteAuthor(), c.getNoteText()));
 					setState(ASSIGNED_NAME);
 				}
