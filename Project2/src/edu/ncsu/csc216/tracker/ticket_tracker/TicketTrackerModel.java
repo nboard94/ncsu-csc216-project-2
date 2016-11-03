@@ -171,6 +171,9 @@ public class TicketTrackerModel {
 	 * @param c The command to apply to the ticket.
 	 */
 	public void executeCommand(int id, Command c) {
+		if (c == null) {
+			throw new IllegalArgumentException();
+		}
 		trackedTicketList.executeCommand(id, c);
 	}
 	
