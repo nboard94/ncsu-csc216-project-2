@@ -68,6 +68,10 @@ public class TrackedTicketList {
 	 * @return ticketsByOwner An ArrayList containing tickets only associated with the specified owner.
 	 */
 	public List<TrackedTicket> getTicketsByOwner(String owner) throws IllegalArgumentException {
+		if (owner == null || owner.equals("")) {
+			throw new IllegalArgumentException();
+		}
+		
 		ArrayList<TrackedTicket> ticketsByOwner = new ArrayList<TrackedTicket>();
 		
 		for (int i = 0; i < tickets.size(); i++) {
@@ -88,6 +92,10 @@ public class TrackedTicketList {
 	 * @return ticketsBySubmitter An ArrayList containing tickets only associated with the specified submitter.
 	 */
 	public List<TrackedTicket> getTicketsBySubmitter(String submitter) throws IllegalArgumentException {
+		if (submitter == null || submitter.equals("")) {
+			throw new IllegalArgumentException();
+		}
+		
 		ArrayList<TrackedTicket> ticketsBySubmitter = new ArrayList<TrackedTicket>();
 		
 		for (int i = 0; i < tickets.size(); i++) {
