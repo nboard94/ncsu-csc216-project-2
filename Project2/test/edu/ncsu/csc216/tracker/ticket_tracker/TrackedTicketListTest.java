@@ -33,5 +33,18 @@ public class TrackedTicketListTest {
 		assertEquals("ndboard", tList.getTrackedTickets().get(0).getNotes().get(0).getNoteAuthor());
 		assertEquals("apple", tList.getTrackedTickets().get(0).getNotes().get(0).getNoteText());
 	}
+	
+	@Test
+	public void testDeleteTicket() {
+		TrackedTicketList tList = new TrackedTicketList();
+		tList.addTrackedTicket("Ticket1", "ndboard", "apple");
+
+		assertEquals(1, tList.tickets.size());
+		
+		tList.deleteTicketById(1);
+		assertEquals(0, tList.tickets.size());
+		
+		
+	}
 
 }

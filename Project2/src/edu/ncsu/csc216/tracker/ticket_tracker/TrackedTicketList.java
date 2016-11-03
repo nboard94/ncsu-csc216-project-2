@@ -110,7 +110,7 @@ public class TrackedTicketList {
 	 * @return ticketById The ticket that has the specified ID.
 	 */
 	public TrackedTicket getTicketById(int id) {
-	TrackedTicket ticketById = null;
+		TrackedTicket ticketById = null;
 		
 		for (int i = 0; i < tickets.size(); i++) {
 			if (tickets.get(i).getTicketId() == id) {
