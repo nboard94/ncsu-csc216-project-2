@@ -11,7 +11,31 @@ public class Command {
 	 * @author NBoar
 	 */
 	public static enum CommandValue {
-		POSSESSION, ACCEPTED, CLOSED, PROGRESS, FEEDBACK
+		
+		/**
+		 * Possession CommandValue represents a possession command.
+		 */
+		POSSESSION, 
+		
+		/**
+		 * Accepted CommandValue represents an accepted command.
+		 */
+		ACCEPTED, 
+		
+		/**
+		 * Closed CommandValue represents a closed command.
+		 */
+		CLOSED, 
+		
+		/**
+		 * Progress CommandValue represents a progress command.
+		 */
+		PROGRESS, 
+		
+		/**
+		 * Feedback CommandValue represents a feedback command.
+		 */
+		FEEDBACK
 	}
 	
 	/**
@@ -19,7 +43,21 @@ public class Command {
 	 * @author NBoar
 	 */
 	public static enum Flag {
-		DUPLICATE, INAPPROPRIATE, RESOLVED
+		
+		/**
+		 * Duplicate flag represents a duplicate ticket.
+		 */
+		DUPLICATE, 
+		
+		/**
+		 * Inappropriate flag represents a inappropriate ticket.
+		 */
+		INAPPROPRIATE,
+		
+		/**
+		 * Resolved flag represents a resolved ticket.
+		 */
+		RESOLVED
 	}
 
 	/** The string associated with the DUPLICATE flag*/
@@ -57,13 +95,13 @@ public class Command {
 		if (newCommand == null) {
 			throw new IllegalArgumentException();
 		}
-		else if (newNoteAuthor == null || newNoteAuthor == "") {
+		else if (newNoteAuthor == null || newNoteAuthor.equals("")) {
 			throw new IllegalArgumentException();
 		}
-		else if (newNote == null || newNote == "") {
+		else if (newNote == null || newNote.equals("")) {
 			throw new IllegalArgumentException();
 		}
-		else if (newCommand == CommandValue.POSSESSION && (newOwner == null || newOwner == "")) {
+		else if (newCommand == CommandValue.POSSESSION && (newOwner == null || newOwner.equals(""))) {
 			throw new IllegalArgumentException();
 		}
 		else if (newCommand == CommandValue.CLOSED &&  newFlag == null) {

@@ -99,6 +99,9 @@ public class CommandTest {
 		}
 	}
 	 
+	/**
+	 * Tests the CommandValue and Flag enumeration methods.
+	 */
 	@Test
 	public void testEnum() {
 		assertEquals("ACCEPTED", Command.CommandValue.valueOf("ACCEPTED").toString());
@@ -107,9 +110,9 @@ public class CommandTest {
 		assertEquals("POSSESSION", Command.CommandValue.valueOf("POSSESSION").toString());
 		assertEquals("CLOSED", Command.CommandValue.valueOf("CLOSED").toString());
 		
-		assertEquals("DUPLICATE",Command.Flag.valueOf("DUPLICATE").toString());
-		assertEquals("INAPPROPRIATE",Command.Flag.valueOf("INAPPROPRIATE").toString());
-		assertEquals("RESOLVED",Command.Flag.valueOf("RESOLVED").toString());
+		assertEquals("DUPLICATE", Command.Flag.valueOf("DUPLICATE").toString());
+		assertEquals("INAPPROPRIATE", Command.Flag.valueOf("INAPPROPRIATE").toString());
+		assertEquals("RESOLVED", Command.Flag.valueOf("RESOLVED").toString());
 
 	}
 }
