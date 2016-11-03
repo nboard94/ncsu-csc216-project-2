@@ -59,7 +59,12 @@ public class TrackedTicketList {
 	 * @return tickets The ArrayList containing all tickets.
 	 */
 	public List<TrackedTicket> getTrackedTickets() {
-		return tickets;
+		if (tickets == null) {
+			throw new IllegalArgumentException();
+		}
+		else {
+			return tickets;
+		}
 	}
 	
 	/**
