@@ -92,7 +92,6 @@ public class TicketTrackerModel {
 	
 	/**
 	 * Returns an array containing TrackedTickets.
-	 * @param submitter The submitter of the tickets you want to view.
 	 * @return ticketList A 2D array with the TrackedTicket's Id, state, and title.
 	 */
 	public Object[][] getTicketListAsArray() {
@@ -109,7 +108,7 @@ public class TicketTrackerModel {
 	
 	/**
 	 * Returns an array containing TrackedTickets with a specified owner.
-	 * @param submitter The submitter of the tickets you want to view.
+	 * @param owner The owner of the tickets you want to view.
 	 * @return ticketList A 2D array with the TrackedTicket's Id, state, and title.
 	 */
 	public Object[][] getTicketListByOwnerAsArray(String owner) throws IllegalArgumentException {
@@ -120,7 +119,7 @@ public class TicketTrackerModel {
 		
 		List<TrackedTicket> list = trackedTicketList.getTicketsByOwner(owner);
 		
-		Object[][] objArray= new Object[list.size()][3];
+		Object[][] objArray = new Object[list.size()][3];
 		
 		for (int i = 0; i < list.size(); i++) {
 			objArray[i][0] = list.get(i).getTicketId();

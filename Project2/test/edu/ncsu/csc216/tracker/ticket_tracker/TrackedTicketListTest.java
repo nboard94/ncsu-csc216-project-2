@@ -4,14 +4,25 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Test class that contains methods for
+ * testing the TrackedTicketList class.
+ * @author NBoar
+ */
 public class TrackedTicketListTest {
 
+	/**
+	 * Tests the TrackedTicketList constructor.
+	 */
 	@Test
 	public void testTrackedTicketList() {
 		TrackedTicketList tList = new TrackedTicketList();
 		assertEquals(0, tList.getTrackedTickets().size());
 	}
 	
+	/**
+	 * Tests the addTrackedTicket method in TrackedTicketList.
+	 */
 	@Test
 	public void testAddTrackedTicket() {
 		TrackedTicketList tList = new TrackedTicketList();

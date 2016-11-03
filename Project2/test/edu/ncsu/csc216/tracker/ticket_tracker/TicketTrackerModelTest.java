@@ -9,15 +9,26 @@ import edu.ncsu.csc216.tracker.command.Command.CommandValue;
 import edu.ncsu.csc216.tracker.command.Command.Flag;
 import edu.ncsu.csc216.tracker.ticket.TrackedTicket;
 
+/**
+ * Class that contains tests for the
+ * methods in TicketTrackerModel.
+ * @author NBoar
+ */
 public class TicketTrackerModelTest {
 	
 	
+	/**
+	 * Tests the constructor for TicketTrackerModel.
+	 */
 	@Test
 	public void testTicketTrackerModel() {
 		TicketTrackerModel tickMod = TicketTrackerModel.getInstance();
 		assertEquals(TicketTrackerModel.getInstance(), tickMod);
 	}
 	
+	/**
+	 * Tests the saveTicketToFile method in TicketTrackerModel.
+	 */
 	@Test
 	public void testSaveTicketToFile() {
 		TicketTrackerModel ttm = TicketTrackerModel.getInstance();
@@ -33,6 +44,9 @@ public class TicketTrackerModelTest {
 		assertEquals(0, ttm.getTicketListAsArray().length);
 	}
 	
+	/**
+	 * Tests the loadTicketsFromFile method in TicketTrackerModel.
+	 */
 	@Test
 	public void testLoadTicketFromFile() {
 		TicketTrackerModel ttm = TicketTrackerModel.getInstance();
@@ -43,18 +57,21 @@ public class TicketTrackerModelTest {
 			ttm.loadTicketsFromFile("test-files/ticket6.xml");
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertEquals(0,ttm.getTicketListAsArray().length);
+			assertEquals(0, ttm.getTicketListAsArray().length);
 		}
 
 		//try to load from valid file
 		try {
 			ttm.loadTicketsFromFile("test-files/ticket1.xml");
-			assertEquals(5,ttm.getTicketListAsArray().length);
+			assertEquals(5, ttm.getTicketListAsArray().length);
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
 	}
 	
+	/**
+	 * Tests the createNewTicketList method in TicketTrackerModel.
+	 */
 	@Test
 	public void testCreateNewTicketList() {
 		TicketTrackerModel ttm = TicketTrackerModel.getInstance();
@@ -67,6 +84,9 @@ public class TicketTrackerModelTest {
 		assertTrue(ttm.getTicketListAsArray().length == 0);
 	}
 	
+	/**
+	 * Tests the getTicketsBySubmitterAsArray method in TicketTrackerModel.
+	 */
 	@Test
 	public void testGetTicketsBySubmitterAsArray() {
 		TicketTrackerModel ttm = TicketTrackerModel.getInstance();
@@ -89,6 +109,9 @@ public class TicketTrackerModelTest {
 		assertEquals(2, arr3.length);
 	}
 	
+	/**
+	 * Tests the getTicketsById method in TicketTrackerModel.
+	 */
 	@Test
 	public void testGetTicketsByID() {
 		TicketTrackerModel ttm = TicketTrackerModel.getInstance();
@@ -108,6 +131,9 @@ public class TicketTrackerModelTest {
 
 	}
 	
+	/**
+	 * Tests the deleteTicktById method in TicketTrackerModel.
+	 */
 	@Test
 	public void testDeleteTicketById() {
 		TicketTrackerModel ttm = TicketTrackerModel.getInstance();
@@ -125,6 +151,9 @@ public class TicketTrackerModelTest {
 		assertNull(ttm.getTicketById(3));
 	}
 	
+	/**
+	 * Tests the getTicketsByOwnerAsArray method in TicketTrackerModel.
+	 */
 	@Test
 	public void testGetTicketByOwnerAsArray() {
 		TicketTrackerModel ttm = TicketTrackerModel.getInstance();
@@ -149,6 +178,9 @@ public class TicketTrackerModelTest {
 
 	}
 	
+	/**
+	 * Tests the executeCommand method in TicketTrackerModel.
+	 */
 	@Test
 	public void testExecuteCommand() {
 		TicketTrackerModel ttm = TicketTrackerModel.getInstance();
