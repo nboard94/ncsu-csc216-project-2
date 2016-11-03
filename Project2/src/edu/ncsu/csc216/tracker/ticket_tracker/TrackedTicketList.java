@@ -67,7 +67,7 @@ public class TrackedTicketList {
 	 * @param owner The owner that you want to filter the tickets by.
 	 * @return ticketsByOwner An ArrayList containing tickets only associated with the specified owner.
 	 */
-	public List<TrackedTicket> getTicketsByOwner(String owner) {
+	public List<TrackedTicket> getTicketsByOwner(String owner) throws IllegalArgumentException {
 		ArrayList<TrackedTicket> ticketsByOwner = new ArrayList<TrackedTicket>();
 		
 		for (int i = 0; i < tickets.size(); i++) {
@@ -87,7 +87,7 @@ public class TrackedTicketList {
 	 * @param submitter The submitter that you want to filter the tickets by.
 	 * @return ticketsBySubmitter An ArrayList containing tickets only associated with the specified submitter.
 	 */
-	public List<TrackedTicket> getTicketsBySubmitter(String submitter) {
+	public List<TrackedTicket> getTicketsBySubmitter(String submitter) throws IllegalArgumentException {
 		ArrayList<TrackedTicket> ticketsBySubmitter = new ArrayList<TrackedTicket>();
 		
 		for (int i = 0; i < tickets.size(); i++) {
