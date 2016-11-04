@@ -34,6 +34,9 @@ public class TrackedTicketListTest {
 		assertEquals("apple", tList.getTrackedTickets().get(0).getNotes().get(0).getNoteText());
 	}
 	
+	/**
+	 * Tests the deleteTicket method in TrackedticketList.
+	 */
 	@Test
 	public void testDeleteTicket() {
 		TrackedTicketList tList = new TrackedTicketList();

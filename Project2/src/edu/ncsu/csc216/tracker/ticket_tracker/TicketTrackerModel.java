@@ -173,7 +173,10 @@ public class TicketTrackerModel {
 		if (c == null) {
 			throw new IllegalArgumentException();
 		}
-		trackedTicketList.executeCommand(id, c);
+		else {
+			trackedTicketList.executeCommand(id, c);
+	
+		}
 	}
 	
 	/**

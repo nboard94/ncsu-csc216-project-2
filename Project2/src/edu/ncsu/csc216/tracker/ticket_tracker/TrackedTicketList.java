@@ -138,7 +138,12 @@ public class TrackedTicketList {
 			throw new IllegalArgumentException();
 		}
 		else {
-			this.getTicketById(id).update(c);
+			 if (this.getTicketById(id) == null) {
+				 throw new IllegalArgumentException();
+			 }
+			 else {
+				 this.getTicketById(id).update(c);
+			 }
 		}
 	}
 	
