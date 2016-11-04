@@ -134,7 +134,12 @@ public class TrackedTicketList {
 	 * @param c The command to apply to the ticket.
 	 */
 	public void executeCommand(int id, Command c) {
-		this.getTicketById(id).update(c);
+		if (c == null) {
+			throw new IllegalArgumentException();
+		}
+		else {
+			this.getTicketById(id).update(c);
+		}
 	}
 	
 	/**
